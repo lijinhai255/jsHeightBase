@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 继承: 类与类之间的方法和属性的继承
+		// 定义类
+		function People(name, age, sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		// 添加方法
+		People.prototype.sayHello = function() {
+			console.log("我的名字是" + this.name);
+		}
+		// 定义另外一个类
+		function Student(name, age, sex, grade) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.grade = grade;
+		}
+
+		// 将子类的原型指向父类的原型
+		Student.prototype = People.prototype;
+
+		// 类式继承: 用于继承方法
+		// 思路1: 既然是继承方法 那么我直接将子类的原型指向父类的原型就行了
+		// 测试1:
+		var p1 = new People("小明", 12, "男");
+		var s1 = new Student("小红", 13, "女");
+		p1.sayHello();
+		s1.sayHello();
+		// 经过测试，发现都可以调用。表明继承成功。
+		// 测试2: 既然是子类 那么子类一定要比父类的方法多 所以向子类的原型上添加更多的方法
+		Student.prototype.hi = function() {
+			console.log("hi")
+		}
+		s1.hi(); // 调用子类的新方法 成功
+		p1.hi(); // 父类的实例调用新方法 也成功 继承失败 因为子类的方法不应该让父类访问到。
+		
+	</script>
+</body>
+</html>

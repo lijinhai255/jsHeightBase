@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#small {
+			position: absolute;
+			top: 200px;
+			left: 100px;
+			width: 420px;
+			height: 420px;
+			border: 11px solid #ccc;
+		}
+		#big {
+			display: none;
+			position: absolute;
+			top: 200px;
+			left: 550px;
+			width: 420px;
+			height: 420px;
+			border: 1px solid #ccc;
+			background: url("./images/big.jpg");
+		}
+		#glass {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 220px;
+			height: 220px;
+			background: url("./images/aaa.png");
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="small">
+		<img src="./images/small.jpg" alt="">
+		<div id="glass"></div>
+	</div>
+	<div id="big"></div>
+	<script type="text/javascript">
+		// 获取元素
+		var small = document.getElementById("small");
+		var big = document.getElementById("big");
+		var glass = document.getElementById("glass");
+
+		// 定义比例
+		var rale = 200 / 380;
+
+		// 鼠标进入small big 和 glass都出现
+		small.onmouseenter = function() {
+			big.style.display = "block";
+			glass.style.display = "block";
+		}
+		small.onmouseleave = function() {
+			big.style.display = "none";
+			glass.style.display = "none";
+		}
+		// 鼠标在small上移动的时候 要让big的背景图变化 要让glass的定位值变化
+		small.onmousemove = function(e) {
+			var e = e || window.event;
+			// 获取鼠标在页面中的位置 
+			var nowX = e.clientX;
+			var nowY = e.clientY + document.documentElement.scrollTop;
+			// 获取元素在页面中的位置
+			var result = offset(small);
+			// 获取元素的左距离
+			var elementLeft = result.left;
+			// 获取元素的上距离
+			var elementTop = result.top;
+			// 计算鼠标在元素中的位置
+			var x = nowX - elementLeft - small.clientLeft;
+			var y = nowY - elementTop - small.clientTop;
+			// 边界判定 就是针对glass的定位值进行判定 
+			var positionX = x - glass.clientWidth / 2;
+			var positionY = y - glass.clientHeight / 2;
+			if (positionX < 0) {
+				positionX = 0;
+			} else if (positionX >= small.clientWidth - glass.clientWidth) {
+				positionX = small.clientWidth - glass.clientWidth
+			}
+			if (positionY < 0) {
+				positionY = 0;
+			} else if (positionY >= small.clientHeight - glass.clientHeight) {
+				positionY = small.clientHeight - glass.clientHeight
+			}
+			// 设置元素定位值
+			glass.style.left = positionX + "px";
+			glass.style.top = positionY + "px";
+			// 设置big的背景定位值
+			big.style.backgroundPositionX = - positionX / rale + "px";
+			big.style.backgroundPositionY = - positionY / rale + "px";
+		}
+
+
+
+		function offset(dom) {
+			var obj = {
+				left: 0,
+				top: 0
+			}
+			var str = window.navigator.userAgent;
+			// 定义变量
+			var isIE8 = str.indexOf("MSIE 8")  === -1 ? false : true;
+			// 一系列计算之后
+			// 判定dom是不是body
+			while (dom != document.body) {
+				if (isIE8) {
+					obj.left += dom.offsetLeft;
+					obj.top += dom.offsetTop;
+				} else {
+					obj.left += dom.offsetLeft  + dom.offsetParent.clientLeft;
+					obj.top += dom.offsetTop   + dom.offsetParent.clientTop;
+				}
+
+				// 当前层级的DOM已经计算完毕 所以要让dom变成上级DOM 不停的循环，不停的累加每一层级的值 DOM不停的变为上一级DOM，迟早有一天它会变成Body 也就意味着 从第一个dom到body的距离都计算了。此时终止计算。
+				dom = dom.offsetParent;
+			}
+			// 返回obj
+			return obj;
+		}
+	</script>
+</body>
+</html>

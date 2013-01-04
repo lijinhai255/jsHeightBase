@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 开启严格模式
+	"use strict"
+	// 定义函数
+	function fun() {
+		var a = 10;
+		console.log(a);
+
+		// 输出this
+		console.log(this);
+		// 通过this添加属性
+		this.color = "red";
+	}
+
+	fun();
+	</script>
+</body>
+</html>

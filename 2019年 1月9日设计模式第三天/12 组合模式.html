@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 组合模式的实现: 首先定义一个基类， 该基类具备该组合的所有属性和方法
+	// 其它的类都继承与该类， 该类并不实现内容
+
+
+	// 定义基类
+	function Base() {
+		this.dom = null;
+		this.children = [];
+	}
+
+	// 方法要写在原型中
+	Base.prototype.add = function(child) {
+		this.children.push(child);
+		return this;
+	}
+
+	Base.prototype.render = function() {
+		// 备份this
+		var me = this;
+		this.children.forEach(function(value) {
+			me.dom.appendChild(value.dom);
+		});
+		return this;
+	}
+
+
+	// 定义最外层的容器元素
+	function Container() {
+		Base.apply(this);
+		this.dom = document.createElement("ul");
+	}
+
+	// 继承
+	Container.prototype = Object.create(Base.prototype);
+
+
+
+	// 定义li元素
+	function Item() {
+		Container.apply(this);
+		this.dom = document.createElement("li");
+	}
+
+	// 继承
+	Item.prototype = Object.create(Container.prototype);
+
+
+	// 定义最顶层元素
+	function Leaf(str) {
+		this.dom = document.createTextNode(str);
+	}
+
+	// 初始化最外层容器元素
+	var container = new Container();
+
+
+	// 初始化5个li元素
+	var item1 = new Item();
+	var item2 = new Item();
+	var item3 = new Item();
+	var item4 = new Item();
+	var item5 = new Item();
+
+
+	// 初始化5个最底层元素
+	var leaf1 = new Leaf("北京通报小学生被伤害事件:6名儿童轻微凹陷性骨折");
+	var leaf2 = new Leaf("北京一小学多名学生受伤 校方:嫌疑人和学校没纠纷");
+	var leaf3 = new Leaf("北京教委:对学生被伤害事件深感痛心 将进行大排查");
+	var leaf4 = new Leaf("北京CBD区域今年内将实现违停抓拍全覆盖");
+	var leaf5 = new Leaf("本周末北京全市交管执法站、车管窗口暂停办公");
+
+
+	item1.add(leaf1).render();
+	item2.add(leaf2).render();
+	item3.add(leaf3).render();
+	item4.add(leaf4).render();
+	item5.add(leaf5).render();
+
+	container.add(item1).add(item2).add(item3).add(item4).add(item5).render();
+	document.body.appendChild(container.dom);
+
+
+
+
+	</script>
+</body>
+</html>

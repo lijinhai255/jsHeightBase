@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 在后端返回的数据都是字符串，但是书写字符串的形式是多种多样的
+	// 比如: '{"name": "老王"}' => JSON
+	// 还可能是 <Student><name>老王</name></Student> => XML
+	// 现在没有人使用XML进行前后端交互了， 都是使用JSON格式
+	// 所以， 我们得到的数据就是：
+	// var str = '{"name": "老王"}';
+
+	// 现在我们明明知道，str是json字符串， 但是不能通过对象打点的语法得到数据
+
+	// 我们可以使用Function构造函数， 将json字符串， 转为js对象
+	// var fun = new Function("return " + str);
+	// var result = fun();
+
+	// ES5为了json字符串与js对象互转方便， 提供了JSON内置对象，分别提供了两个方法: parse, stringify
+
+
+	// parse 将json字符串转为对象
+	// var result = JSON.parse(str);
+	// console.log(result);
+
+
+	// 定义一个对象
+	var obj = {
+		name: "老李",
+		age: 30,
+		sex: "男"
+	}
+
+	// 想要将对象转为字符串，首先想到是toString方法
+	// console.log(obj.toString());
+
+	// 结果， 失败
+
+
+	// 使用stringify方法
+	var result = JSON.stringify(obj);
+	console.log(result);
+
+
+
+
+
+	</script>
+</body>
+</html>

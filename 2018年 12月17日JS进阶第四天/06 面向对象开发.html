@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+// 我们要创建一个人，人描述：名字，性别，身高，体重
+// 描述老李
+var name = '老李'
+var sex = '男'
+var height = 180
+var weight = 180
+// 描述老彭
+var name2 = '老彭'
+var sex2 = '男'
+var height2 = 175
+var weight2 = 175
+// 老师是一个对象，我们可以将这些信息放在一个对象中，看成是一个整体
+// 通过一个对象，将所有信息存储，减少变量的定义。
+var li = {
+	name: '老李',
+	sex: '男',
+	height: 180,
+	weight: 180
+}
+var peng = {
+	name: '老彭',
+	sex: '男',
+	height: 175,
+	weight: 175
+}
+// 1 减少了变量，避免作用域污染， 2 一个对象是一个整体...
+// 一个一个对象的定义，影响开发效率，因为重复的属性要重复的书写
+// 为了避免重复的书写，我们可以创建一个函数，在函数中返回这个对象
+function createObject() {
+	var li = {
+		name: '老李',
+		sex: '男',
+		height: 180,
+		weight: 180
+	}
+	return li;
+}
+// 得到李老师
+var li = createObject();
+// 如果将对象的属性，在函数写死，不利于我们使用，为了增强适用性，我们可以抽象提取不同点，作为参数传递，相同的，在函数内部固定书写就可以了
+// 重新定义函数
+function createObject(name, sex, height, weight) {
+	var teacher = {
+		// 不同的部分，通过变量可以传递了
+		name: name,
+		sex: sex,
+		height: height,
+		weight: weight,
+		intro: function() {
+			// this是在执行时存在的，指向调用者，可以通过call和apply更改指向
+			// console.log(this)
+			// 打印介绍的文案
+			console.log('大家好，我是' + this.name + ', 身高' + this.height + ', 体重' + this.weight)
+		}
+	}
+	// 返回创建后的老师
+	return teacher;
+}
+// 创建老师
+var feng = createObject('小冯', '女', 170, 100);
+var li = createObject('老李', '男', 180, 180);
+var peng = createObject('老彭', '男', 175, 175)
+console.log(feng)
+console.log(li)
+console.log(peng)
+// 老师自我介绍
+li.intro()
+peng.intro()
+feng.intro()
+
+</script>
+</body>
+</html>

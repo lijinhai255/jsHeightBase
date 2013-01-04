@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义对象
+	var obj = {
+		a: 1
+	}
+
+	// 封闭对象
+	Object.seal(obj);
+
+	// 添加属性
+	obj.b = 2;
+	// 删除属性
+	delete obj.a;
+	// 修改属性值
+	obj.a = 123;
+	console.log(obj);
+
+	// 总结: 当封闭了对象之后， 此时，不能可以添加属性， 也不可以删除， 但是可以修改属性值
+
+	// 查看对象是否被封闭
+	console.log(Object.isSealed(obj));
+
+	</script>
+</body>
+</html>

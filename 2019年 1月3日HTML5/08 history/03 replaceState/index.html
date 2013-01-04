@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 添加历史记录
+	history.pushState({"name": "老李"}, null, "index.html#aaa");
+	history.pushState({"name1": "老李"}, null, "index.html#bbb");
+	// 替换当前历史记录
+	history.replaceState({"name2": "老王"}, null, "index.html#ccc");
+
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		游戏分析:
+			像素鸟游戏就是一只鸟在不停的穿越管子， 同时管子向后撤，地面向后撤，背景向后撤
+			背景移动速度要慢一点
+
+		当前游戏可以分为几个类呢:
+			鸟类、 管子类、 背景类（山和地面）、 游戏类
+
+		当前游戏需要很多图片：
+			["imagse/bg_day.png", "images/bird0_0.png", "images/bird0_1.png", "images/bird0_2.png", "images/land.png", "images/pipe_down.png", "images/pipe_up.png"]
+	 */
+
+
+	 // 定义数组， 用于存放所有的图片
+	 var imgArr = ["images/bg_day.png", "images/bird0_0.png", "images/bird0_1.png", "images/bird0_2.png", "images/land.png", "images/pipe_down.png", "images/pipe_up.png"];
+
+
+
+	 // 调用
+	 loadImage(imgArr, function(imgArr) {
+	 	console.log(imgArr);
+
+
+	 	// 开始游戏
+	 })
+
+
+	 // 封装函数，接收两个参数，第一个参数是图片数组， 第二个参数是回调函数， 当所有图片加载完毕之后执行回调函数
+
+	 /**
+	  * loadImage 加载图片函数， 当所有图片加载完毕之后执行回调函数
+	  * @arr 图片属性
+	  * @callback 回调函数
+	  */
+	 function loadImage(arr, callback) {
+	 	// 定义信号量
+	 	var idx = 0;
+	 	// 定义新的数组
+	 	var loadImageArr = [];
+	 	arr.forEach(function(value, index) {
+	 		// 创建图片元素
+			 var img = new Image();
+			 // 设置路径
+			 img.src = value;
+ 			 // 添加load事件
+			 img.onload = function() {
+			 	// 信号量++
+			 	idx++;
+			 	// 每加载一张图片，就放入数组中
+			 	// 由于load事件中，图片的加载顺序可能不一致， 所以为了保证图片的加载顺序，使用索引值来保证图片加载顺序
+			 	loadImageArr[index] = this;
+			 	// console.log(idx);
+			 	// 判断当前信号量与数组的长度是否相等
+			 	if (idx === arr.length) {
+			 		// 执行回调函数
+				 	callback(loadImageArr);
+			 	}
+			 }
+	 	})
+	 }
+
+	</script>
+</body>
+</html>

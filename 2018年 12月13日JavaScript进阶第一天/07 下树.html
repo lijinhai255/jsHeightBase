@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 200px;
+			height: 200px;
+			border: 1px solid blue;
+			margin: 0 auto;
+		}
+		p {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<button id="btn">下树</button>
+	<script type="text/javascript">
+		// 创建元素
+		// 使用DOM提供的API createElement
+		var p = document.createElement("p");
+		// 让孤儿节点上树
+		// 获取box
+		var box = document.getElementById("box");
+		var s = box.appendChild(p);
+		// 返回值是被追加的子节点
+
+		var btn = document.getElementById("btn");
+		// 当点击btn的时候让p从box中消失
+		btn.onclick = function() {
+			box.removeChild(p);
+		}
+	</script>
+</body>
+</html>

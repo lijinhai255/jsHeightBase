@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<input type="text" id="inp">
+	<div tabindex="1" id="div1">111</div>
+	<div tabindex="2">2</div>
+	<div tabindex="3">3</div>
+	<div tabindex="4">4</div>
+	<div tabindex="5">5</div>
+	<div tabindex="6">6</div>
+	<div id="div7">7777</div>
+<script type="text/javascript">
+	// 获取元素
+	// var div7 = document.getElementById('div7');
+	// div7.onkeydown = function() {
+	// 	console.log('触发了事件')
+	// }
+	// 表单元素可以绑定
+	// var inp = document.getElementById('inp')
+	// inp.onkeydown = function(e) {
+	// 	console.log('input 触发了', e.key, e.keyCode, e)
+	// }
+	// 为设置了tabindex的元素绑定键盘事件
+	// var div1 = document.getElementById('div1');
+	// div1.onkeydown = function(e) {
+	// 	console.log('div1 onkeydown', e)
+	// }
+	// div1.onkeyup = function() {
+	// 	console.log('div1 onkeyup')
+	// }
+	// div1.onkeypress = function() {
+	// 	console.log('div1 onkeypress')
+	// }
+
+	// 监听键盘事件
+	// 按下按键
+	document.onkeydown = function() {
+		console.log('按键按下了')
+	}
+	// 按键弹起
+	document.onkeyup = function() {
+		console.log('按键弹起来了')
+	}
+	// 有内容输入
+	document.onkeypress = function() {
+		console.log('输入字符了')
+	}
+</script>
+</body>
+</html>

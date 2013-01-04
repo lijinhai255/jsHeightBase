@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 560px;
+			height: 300px;
+			margin: 50px auto;
+			border: 1px solid red;
+		}
+		img {
+			/*改变旋转轴中心的位置为左上角*/
+			/*transform-origin: left top;*/
+			/*transform-origin: center center;*/
+			/*改变旋转轴中心到80px 80px的位置*/
+			/*transform-origin: 80px 80px;*/
+			/*改变旋转轴中心到中央位置 50% 50%*/
+			transform: 50% 50%;
+			/*transform-origin: 0% 50%;*/
+			/*transform-origin: 100% 50%;*/
+			transform: rotateZ(45deg)
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1.jpg">
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="1024" height="682.5"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+
+	// 在canvas的正中心绘制圆
+	drawCircle(canvas.width / 2, canvas.height / 2, 70);
+
+	// 平移坐标系
+	ctx.translate(canvas.width / 2, canvas.height / 2);
+
+	// 再次绘制圆
+	drawCircle(0, 0, 50);
+
+
+	// 在平移坐标系之前绘制了一个圆， 在平移坐标系之后绘制了一个圆，在平移之前绘制的图形不会因为坐标系的改变而改变位置
+
+
+
+	// 封装一个函数， 用来绘制圆
+	function drawCircle(x, y, r) {
+		// 开启路径
+		ctx.beginPath();
+		// 绘制弧
+		ctx.arc(x, y, r, 0, Math.PI * 2);
+		// 闭合路径
+		ctx.closePath();
+		// 描边
+		ctx.stroke();
+	}
+	
+	</script>
+</body>
+</html>

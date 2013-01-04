@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#app {
+	width: 560px;
+	height: 300px;
+	margin: 50px auto;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid red;
+}
+#box {
+	width: 5000px;
+	height: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#box li {
+	float: left;
+}
+</style>
+</head>
+<body>
+	<button id="btn">切换</button>
+	<div id="app">
+		<ul id="box">
+			<li><img src="images/0.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+			<li><img src="images/0.jpg" alt=""></li>
+		</ul>
+	</div>
+<script type="text/javascript" src="js/bindEvent.js"></script>
+<script type="text/javascript" src="js/animate.js"></script>
+<script type="text/javascript">
+	// 1 改变了事件
+	// 2 添加节流
+	// 3 定义判断滚动方法的方法
+	// 4 显示下一张图片，处理边界值
+	// 5 显示上一张图片，处理边界值
+
+
+
+	// 获取元素
+	var app = document.getElementById('app');
+	var box = document.getElementById('box');
+	// var btn = document.getElementById('btn');
+	// 获取li的长度
+	// var lis = document.getElementsByTagName('li')
+	// 在离li最近的元素ul上寻找更快
+	var lis = box.getElementsByTagName('li');
+	// 获取长度
+	var len = lis.length;
+	// console.log(111, lis, len)
+	// 获取宽度
+	var width = app.clientWidth;
+	// console.log(width)
+	// 定义信号量
+	var index = 0;
+	// 点击按钮的时候，切换
+	// bindEvent(btn, 'click', function() {
+	// 	// 改变信号量，显示下一个
+	// 	index++;
+	// 	// 切换图片
+	// 	animate(box, {
+	// 		// 点击几次，就移动几张图片的距离，向左移动，
+	// 		left: -index * width
+	// 	// 1秒钟
+	// 	}, 1000)
+	// })
+
+	// 滚轮事件是一个高频事件，要节流
+	// 定义开关
+	let lock = false;
+	// 绑定滚轮事件
+	bindEvent(window, 'mousewheel', function(e) {
+		// 兼容事件对象
+		e = e || window.e;
+		// 触发事件的时候，要判断是否被锁起来。锁起来了就要返回，不要触发事件了
+		if (lock) {
+			return;
+		}
+		// 锁起来，不要再触发了
+		lock = true;
+		// 在信号量更改之前，判断方向
+		if (direction(e)) {
+			// 向上滑动显示上一张图片
+			// 如果是第一张图片，显示上一张，应该显示最后一个
+			if (index === 0) {
+				index = len - 1;
+				// 显示后面的第一张图片
+				box.style.left = -index * width + 'px';
+			}
+			// 显示上一张图片，减一
+			index--;
+			// 切换图片
+			animate(box, {
+				left: -index * width
+			}, 1000, function() {
+				// 执行完毕，关闭开关
+				lock = false;
+			})
+		} else {
+			// 向下滑动，显示下一张图片
+			// 改变信号量，显示下一个
+			index++;
+			// 切换图片
+			animate(box, {
+				// 点击几次，就移动几张图片的距离，向左移动，
+				left: -index * width
+			// 1秒钟
+			}, 1000, function() {
+				// 此时，如果到最后一张了，我们要显示第一张
+				if (index >= len - 1) {
+					// 重置信号量
+					index = 0;
+					// 重置元素位置
+					box.style.left = '0'
+				}
+				// console.log(index, len - 1)
+				// 动画执行完毕时候的回调函数
+				lock = false;
+			})
+		}
+		
+	})
+	/***
+	 * 判断滑动的方法
+	 * return 	向上返回true，向下返回false
+	 **/ 
+	function direction(e) {
+		// 如果是火狐浏览器，向下滑动是正数
+		// 我们通过能力检测，判断浏览器
+		if (undefined === e.wheelDelta) {
+			// 没有wheelDelta能力，是火狐浏览器
+			// 如果detail值是负数是向上。是正数是向下
+			if (e.detail > 0) {
+				return false;
+			} else {
+				return true;
+			}
+		// 如果是非火狐浏览器，向上滑动是正数
+		} else {
+			// 如果wheelDelta值是正数是向上，是负数是向下
+			if (e.wheelDelta > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+</script>
+</body>
+</html>

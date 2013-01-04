@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 一个闭包
+	(function() {
+
+	})()
+
+	// 一个类
+	function People() {
+
+	}
+
+
+	// 闭包类
+	(function() {
+		function People() {
+
+		}
+	})()
+
+
+	// 如果将People放入到全局中， 那么People就可以被别人访问到， 就可以无限的实例化对象
+	// 如果将People放入闭包中， 那么People就不能被别人访问到， 不能够被初始化了
+ 
+	</script>
+</body>
+</html>

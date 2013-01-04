@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 560px;
+			height: 300px;
+			margin: 0 auto;
+			border: 1px solid red;
+		}
+		img {
+			/*2d中有平移、 旋转、 缩放、 斜切*/
+
+			/*2d中的平移*/
+			/*translateX 表示正方向向右  translateY 表示正方向向下*/
+			/*transform: translate(20px);*/
+			/*transform: translateX(20px) translateY(20px);*/
+
+			/*2d中的旋转*/
+			/*接受一个带有单位的参数， 表示沿着顺时针旋转了多少角度*/
+			/*transform: rotate(45deg);*/
+			/*transform: rotateX(45deg) rotateY(45deg);*/
+
+			/*2d中的缩放*/
+			/*如果接受一个参数的时候，表示元素的宽度和高度变为原来的多少倍*/
+			/*如果接受两个参数， 第一个参数表示宽度变为原来的多少倍， 第二个参数表示高度变为原来的多少倍*/
+			/*transform: scale(2);*/
+			/*transform: scale(1.5, .5);*/
+
+
+			/*2d中的斜切*/
+			/*transform: skew(20deg);*/
+			/*transform: skew(20deg, 20deg)*/
+
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/0.jpg">
+	</div>
+</body>
+</html>

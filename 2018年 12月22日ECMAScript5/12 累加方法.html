@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+	// 求相加的结果
+	// var result = arr.reduce(function(pre, value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return pre + value;
+	// })
+
+	// console.log(result);
+
+
+	// 求乘积的结果
+	// var result = arr.reduceRight(function(pre, value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return pre * value;
+	// })
+
+	// console.log(result);
+
+
+	// 兼容IE
+	if (!Array.prototype.reduceRight) {
+		// 拓展该方法
+		Array.prototype.reduceRight = function(fn) {
+			// 由于是从倒数第二个成员开始遍历，当次累积的结果是倒数第一个成员
+			var result = this[this.length - 1];
+			// 循环， 从倒数第二个成员开始遍历
+			for (var i = this.length - 2; i >= 0; i--) {
+				// 执行函数传递参数
+				// 有四个参数: 上一次的累积结果， 当前成员值 this[i], 当前索引值i, 原数组 this
+				result = fn(result, this[i], i, this)
+			}
+			// 返回结果
+			return result;
+		}
+	}
+
+	// 测试
+	var result = arr.reduceRight(function(pre, value, index, arr) {
+		console.log(this, arguments);
+		return pre * value;
+	})
+
+	console.log(result);
+
+	// 实现reduce
+
+	</script>
+</body>
+</html>

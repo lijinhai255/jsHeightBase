@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+			background: url(imgs/clock.png) no-repeat center center;
+			
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="600" height="600"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+	// 平移坐标系
+	ctx.translate(canvas.width / 2, canvas.height / 2);
+
+
+	// 改变线宽
+	ctx.lineWidth = 4;
+	// 绘制秒针
+	line(0, 20, 0, -140);
+
+	drawCircle(0, 0,3);
+
+	// 改变线宽
+	ctx.lineWidth = 6
+	// 绘制分针
+	line(0, 15, 0, -120);
+
+
+	// 改变线宽
+	ctx.lineWidth = 8;
+	// 绘制时针
+	line(0, 10, 0, -100);
+
+
+
+	// 定义角度
+	var deg = Math.PI / 180;
+
+	// 获取当前时间
+	var date = new Date();
+	// 定义信号量
+	var i = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+
+	// 开启定时器
+	var timer = setInterval(function() {
+		// 信号量改变
+		i++;
+		// 清屏
+		ctx.clearRect(-3000, -3000, 30000, 30000);
+		// 保存状态
+		ctx.save();
+		// 旋转
+		ctx.rotate(deg * i * 6);
+		// 绘制秒针
+		// 改变线宽
+		ctx.lineWidth = 4;
+		// 绘制秒针
+		line(0, 20, 0, -140);
+		// 恢复状态
+		ctx.restore();
+
+
+		// 保存状态
+		ctx.save();
+		// 旋转
+		ctx.rotate(deg * i * 6 / 60);
+		// 改变线宽
+		ctx.lineWidth = 6
+		// 绘制分针
+		line(0, 15, 0, -120);
+		// 恢复状态
+		ctx.restore();
+
+		// 保存状态
+		ctx.save();
+		// 旋转
+		ctx.rotate(deg * i * 6 / 60  / 12);
+		// 改变线宽
+		ctx.lineWidth = 8;
+		// 绘制时针
+		line(0, 10, 0, -100);
+		// 恢复状态
+		ctx.restore();
+
+	}, 1000)
+
+
+
+
+
+
+
+
+
+
+	// 封装一个函数，传递两个点， 绘制两个点之间的线段
+	function line(x1 ,y1, x2, y2) {
+		// 开启路径
+		ctx.beginPath();
+		// 移动画笔到某个位置
+		ctx.moveTo(x1, y1);
+		// 移动画笔到x2, y2的位置
+		ctx.lineTo(x2, y2);
+		// 描边
+		ctx.stroke();
+	}
+
+
+
+
+	// 封装一个函数， 用来绘制圆
+	function drawCircle(x, y, r) {
+		// 开启路径
+		ctx.beginPath();
+		// 绘制弧
+		ctx.arc(x, y, r, 0, Math.PI * 2);
+		// 闭合路径
+		ctx.closePath();
+		// 描边
+		ctx.stroke();
+	}
+	</script>
+</body>
+</html>

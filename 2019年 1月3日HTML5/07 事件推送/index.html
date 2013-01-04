@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="list"></ul>
+	<script type="text/javascript">
+	// 正常情况下，只能够从浏览器端主动推送信息到服务器端， 服务器端接受请求并返回数据， 关闭连接， 无法从服务器端主动推送信息到浏览器端， 所以HTML5提供了一个EventSource函数，用于主动推送信息到浏览器端
+
+	// 使用方式与Worker函数类似，都需要初始化，并且也需要服务器环境
+
+	var es = new EventSource("/hehe");
+
+
+	// 获取ul
+	var ul = document.getElementById("list");
+	// 接受信息
+	es.onmessage = function(e) {
+		// 具体的数据在e.data中
+		// console.log(e.data);
+		// 创建Li元素
+		var li = document.createElement("li");
+		li.innerHTML = e.data;
+		// 追加元素
+		ul.appendChild(li);
+	}
+
+	</script>
+</body>
+</html>

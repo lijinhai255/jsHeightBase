@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 工厂函数 我们已经将工厂的生产出来的对象的方法复用问题解决了。
+		// 构造函数 是一种内置的工厂函数
+		function People(name, age, sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			// 构造函数内不可以像以下方式去定义方法 因为又有复用问题
+			// this.sayHello = function() {
+			// }
+		}
+		// 构造函数是JS作者内定的一种机制。
+		// 同样的，我们可以给构造函数的prototype属性添加属性
+		// 函数天生就有一个prototype属性。
+		// 该属性天生就有一个constructor属性指向原函数。
+		// 该prototype属性上的所有内容都可以被构造函数的实例去调用。
+		People.prototype.sayHello = function() {
+			console.log("大家好,我是" + this.name)
+		}
+
+		// 初始化
+		var p = new People("小明", 13, "男");
+		p.sayHello();
+
+		var p1 = new People("小明1", 13, "男");
+		p1.sayHello();
+
+		
+		
+	</script>
+</body>
+</html>

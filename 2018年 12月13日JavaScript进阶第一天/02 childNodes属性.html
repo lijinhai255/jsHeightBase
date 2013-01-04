@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="box">
+	<div id="box1"></div>
+	nihao
+	<!-- 你好帅 -->
+</div>
+	<script type="text/javascript">
+		// childNodes属性是一个节点的所有子节点的集合属性
+		// 它指向调用该属性的节点的所有子节点集合。 该集合是一个类数组对象，类型是NodeList。
+		// 获取box
+		var box = document.getElementById("box");
+		// 输出所有子节点集合
+		// console.log(box.childNodes.length);
+
+		// 我们想要获取所有的子节点， 但是childNodes属性有兼容性问题。所以我们得自己想办法
+		// 定义一个函数 解决兼容性问题 
+		// 给定一个元素 返回所有的节点 并且把空白符形成的节点去掉
+		// function getChildNodes(dom) {
+		// 	// 定义一个数组
+		// 	var arr = [];
+		// 	// 先输出所有的节点的类型 如果是3 查看是不是空文本
+		// 	for (var i = 0; i < dom.childNodes.length; i++) {
+		// 		console.log(dom.childNodes[i].nodeType);
+		// 		// 判断当前节点的类型是不是文本
+		// 		if(dom.childNodes[i].nodeType === 3) {
+		// 			console.log(dom.childNodes[i].data);
+		// 			// 使用正则表达式匹配dom.childNodes[i].data 是不是空白符
+		// 			// 定义正则表达式
+		// 			var reg = /^\s+$/;
+		// 			if(reg.test(dom.childNodes[i].data)) {
+		// 				console.log("第" + i + "项是一个纯空白");
+		// 				// 既然是空白符 就不要进入了
+		// 			} else {
+		// 				// 如果是一个文本并且内容不是空的 也要进入数组
+		// 				arr.push(dom.childNodes[i]);
+		// 			}
+		// 		} else {
+		// 			// 如果不是文本 直接进入数组
+		// 			arr.push(dom.childNodes[i]);
+		// 		}
+		// 	}
+		// 	// 循环体内主要是在检查哪一项是空白 
+		// 	return arr;
+		// }
+		// 执行
+		var childNodes = getChildNodes(box);
+		console.log(childNodes)
+	</script>
+</body>
+</html>

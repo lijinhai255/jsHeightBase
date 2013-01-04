@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 在ES3.1中
+	// var obj = {
+	// 	a: 1,
+	// 	b: 2
+	// }
+
+	// 可以访问
+	// console.log(obj);
+	// 添加属性
+	// obj.c = 3;
+	// 删除属性
+	// delete obj.a;
+	// 修改属性值
+	// obj.b = 20;
+
+
+	// ES5
+	var obj = {
+		color: "red"
+	}
+
+	// 设置特性
+	Object.defineProperty(obj, "color", {
+		// 不可写入
+		writable: false
+	})
+
+
+	// 尝试修改obj.color
+	obj.color = "blue";
+	console.log(obj);
+
+
+	</script>
+</body>
+</html>

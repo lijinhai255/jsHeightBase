@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+function a() {
+	var index = 1;
+	// 为了在b中可以访问1，我们可以备份index
+	var index2 = index;
+	function b() {
+		// 覆盖之前的。
+		var index = 2;
+		console.log(index, index2)
+	}
+	// 执行b
+	b()
+}
+// 执行a
+a();
+</script>
+</body>
+</html>

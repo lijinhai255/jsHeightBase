@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 原有方式
+	// var obj = {};
+	// var obj1 = new Object();
+
+
+
+	// 通过Object.create方法创建对象
+	// var obj2 = Object.create(null);
+	// console.log(obj, obj1, obj2);
+
+
+	// 创建对象
+	// var obj = Object.create(null, {
+	// 	color: {
+	// 		// 配置值
+	// 		value: "red",
+	// 		// 不可写入
+	// 		writable: true,
+	// 		enumerable: true
+	// 	},
+	// 	num: {
+	// 		// 配置值
+	// 		value: 100,
+	// 		// 不可写入
+	// 		writable: true,
+	// 		enumerable: true
+	// 	}
+	// })
+
+
+	// var obj = Object.create({
+	// 	sayHello: function() {
+	// 		console.log("sayHello");
+	// 	},
+	// 	sayNihao: function() {
+	// 		console.log("nihao");
+	// 	},
+	// 	hehe: function() {
+	// 		console.log("hehe");
+	// 	}
+	// })
+
+	// obj.sayHello();
+
+	// 原型对象
+	var prototype = {
+		sayHello: function() {
+			console.log("sayHello");
+		},
+		sayNihao: function() {
+			console.log("nihao");
+		},
+		hehe: function() {
+			console.log("hehe");
+		}
+	}
+
+	// 特性对象
+	var options = {
+		color: {
+	 		// 配置值
+			value: "red",
+			// 不可写入
+			writable: true,
+			enumerable: true
+		},
+		num: {
+			// 配置值
+			value: 100,
+			// 不可写入
+			writable: true,
+			enumerable: true
+		}
+	}
+
+
+	var obj = Object.create(prototype, options);
+
+
+
+	</script>
+</body>
+</html>

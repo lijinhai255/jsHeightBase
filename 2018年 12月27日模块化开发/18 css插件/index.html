@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="require.js"></script>
+	<script type="text/javascript">
+	// 配置css
+	require.config({
+		map: {
+			// 匹配所有
+			"*": {
+				// 文件目录
+				css: "css"
+			}
+		}
+	})
+
+	// 加上css!前缀
+	require(["css!css.css"]);
+	</script>
+</body>
+</html>

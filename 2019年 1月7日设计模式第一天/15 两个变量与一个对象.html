@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var obj = {
+
+	}
+
+	var result = obj;
+
+	// 给result添加属性
+	result.a = 123;
+	// 此时， obj将受到影响
+
+
+	result = {};
+	// 此时， obj没有受到影响
+
+
+	// 总结: 当两个对象引用着同一个地址的时候， 当其中一个对象通过点语法添加属性的时候，另一个对象将受到影响，
+	// 如果其中一个对象使用=进行赋值， 另外一个对象将不会受到影响
+	</script>
+</body>
+</html>

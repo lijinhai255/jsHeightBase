@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul></div>
+	<script type="text/javascript">
+		// 获取元素
+		var box = document.getElementById("box");
+		// 之前我们使用getElementsByTagName("ul");
+		// 我们可以利用节点之间的关系来获取ul
+		var ul = box.childNodes[0];
+		console.log(ul);
+		// 从父亲找儿子
+		// 第一个儿子
+		var big = ul.firstChild;
+		// 最后一个儿子
+		var small = ul.lastChild;
+		// 中间的2 3 4 没有办法直接通过属性得到 只能够通过childNodes[1|2|3] 来得到
+
+		// 从儿子找父亲
+		var father = big.parentNode;
+		var father1 = small.parentNode;
+
+		console.log(father === father1);
+
+		// 兄弟之间的关系
+		// 获取第三个li
+		var li3 = ul.childNodes[2];
+		// 前一个兄弟
+		var li2 = li3.previousSibling;
+		// 下一个兄弟
+		var li4 = li3.nextSibling;
+	</script>
+</body>
+</html>

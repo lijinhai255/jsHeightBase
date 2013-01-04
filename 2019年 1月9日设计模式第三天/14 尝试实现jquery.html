@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+	// 定义类
+	var jQuery = function(select) {
+		return new jQuery.prototype.init(select);
+	}
+
+	window.$ = window.jQuery = jQuery;
+
+	jQuery.prototype.init = function(select) {
+		// var doms = document.querySelectorAll(select);
+		// for (var i = 0; i < doms.length; i++) {
+		// 	this[i] = doms[i];
+		// }
+	}
+
+
+	// 添加方法
+	// 这样写， 太长了
+	// jQuery.prototype.init.prototype.add = function() {
+
+	// }
+
+	// jQuery.fn = jQuery.prototype; // 给jQuery添加了一个fn属性， 等价于jQuery.prototype, 之后我们只需要给jQuery.fn去添加方法即可， 但是还要设置 jQuery.prototype.init.prototype = jQuery.fn;
+
+
+	jQuery.fn = jQuery.prototype;
+	jQuery.prototype.init.prototype = jQuery.fn;
+
+
+	jQuery.fn.add = function() {
+		console.log("add");
+		return this;
+	};
+
+	jQuery.fn.add1 = function() {
+		console.log("add1");
+		return this;
+	}
+
+
+	jQuery.fn.add2 = function() {
+		console.log("add2");
+		return this;
+	}
+
+
+
+
+	var $div = jQuery();
+	$div.add().add1();
+	</script>
+</body>
+</html>

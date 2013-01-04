@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 800px;
+			height: 400px;
+			margin: 0 auto;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script type="text/javascript">
+	Highcharts.chart("box", {
+		// 标题
+		title: {
+			// 标题文本
+			text: ""
+		},
+		// 数据列
+		series: [
+			{
+				name: "北京",
+				data: [1, 0, 1, 0, -2, -4, -6, -8, -8]
+			}
+		],
+		plotOptions: {
+			series: {
+				color: "white",
+				dataLabels: {
+					enabled: true,
+					style: {
+						fontWeight: 'bold',
+						fontSize: '14px',
+						color: 'white',
+						textOutline: "none"
+					}
+				}
+			}
+		},
+		chart: {
+			backgroundColor: {
+				linearGradient: [0, 0, 500, 500],
+				stops: [
+					[0, 'rgb(123, 123, 255)'],
+					[1, 'rgb(200, 200, 255)']
+				]
+			},
+			type: 'line'
+		},
+		// x轴
+		xAxis: {
+			// 轴标签分类
+			categories: (function() {
+				// 定义数组
+				var arr = [];
+				// 获取当前时间
+				var hour = new Date().getHours();
+				// 循环存储数据
+				for (var i = 0; i < 9; i++) {
+					// 判断数组中的每一项
+					if (i === 0) {
+						arr.push("现在");
+					} else {
+						var item = (hour + 3 * i - 2) % 24 + "";
+						// console.log(item);
+						// 判断字符串的长度
+						if (item.length === 1) {
+							item = "0" + item;
+						}
+						// console.log(item);
+
+						arr.push(item + "点");
+					}
+				}
+				// 返回数组
+				return arr;
+			})(),
+			// 轴标签
+			labels: {
+				// 设置样式
+				style: {
+					color: "white"
+				}
+			}
+		},
+		// y轴
+		yAxis: {
+			// 标题
+			title: {
+				text: ""
+			},
+			// 轴标签
+			labels: {
+				// 设置样式
+				style: {
+					color: "white"
+				}
+			}
+		},
+		// 图例
+		legend: {
+			enabled: false
+		},
+	})
+	</script>
+</body>
+</html>

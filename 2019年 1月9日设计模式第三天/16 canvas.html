@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="500"></canvas>
+	<script type="text/javascript">
+	var Command = (function() {
+		// 获取元素
+		var canvas = document.getElementById("myCanvas");
+		// 获取画笔
+		var ctx = canvas.getContext("2d");
+		// 定义真正的命令对象
+		var C = {
+			"drawMachineCat": function(x, y, r) {
+				// 改变线宽方法
+				this.lineWidth(2);
+				// 绘制猫头
+				this.drawCircle(x, y, r);
+				this.fill("blue");
+				this.stroke("black");
+
+				// 绘制白脸
+				this.drawCircle(x, y + 20, r - 20);
+				this.fill("white");
+				this.stroke("black");
+
+				// 绘制左眼
+				this.drawCircle(x - 50, y - 150, 30);
+				this.fill("white");
+				this.stroke("black");
+
+				// 绘制右眼
+				this.drawCircle(x + 50, y - 150, 30);
+				this.fill("white");
+				this.stroke("black");
+
+				// 绘制左眼睛
+				this.drawCircle(x - 50 + 10, y - 150, 8);
+				this.fill("black");
+
+				// 绘制右眼睛
+				this.drawCircle(x + 50 - 10, y - 150, 8);
+				this.fill("black");
+
+
+				// 绘制眼白
+				this.drawCircle(x - 50 + 10, y - 150, 2);
+				this.fill("white");
+
+				// 绘制右眼白
+				this.drawCircle(x + 50 - 10, y - 150, 2);
+				this.fill("white");
+
+			},
+			"drawCircle": function(x, y, r) {
+				// // 开启路径
+				ctx.beginPath();
+				// 绘制弧
+				ctx.arc(x, y, r, 0, Math.PI * 2);
+				// 闭合路径
+				ctx.closePath();
+			},
+			"fill": function(color) {
+				ctx.fillStyle = color;
+				ctx.fill();
+			},
+			"stroke": function(color) {
+				ctx.strokeStyle = color;
+				ctx.stroke();
+			},
+			"lineWidth": function(num) {
+				ctx.lineWidth = num;
+			}
+		};
+		// 定义接口
+		return {
+			exec: function(type) {
+				// 获取剩余参数
+				var arg = [].slice.call(arguments, 1);
+				// console.log(arg);
+				C[type].apply(C, arg);
+			}
+		}
+	})();
+
+	// 命令的调用
+	Command.exec("drawMachineCat", 500, 250, 200);
+	</script>
+</body>
+</html>

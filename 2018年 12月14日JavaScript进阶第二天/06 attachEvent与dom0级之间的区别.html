@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 500px;
+			height: 500px;
+			background-color: red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// 添加dom0级事件
+
+
+	// attachEvent
+	// box.attachEvent("onclick", function() {
+	// 	console.log("attachEvent2");
+	// })
+	box.onclick = function() {
+		console.log(1);
+		console.log(this);
+	}
+	box.attachEvent("onclick", function() {
+		console.log("attachEvent1");
+		console.log(this);
+	})
+
+	// 总结:
+	// attachEvent可以绑定多个事件函数
+	// 执行顺序: dom0级优先执行， 逆序执行attachEvent事件
+	// this指向: attachEvent事件指向window
+
+
+
+
+	
+	</script>
+</body>
+</html>

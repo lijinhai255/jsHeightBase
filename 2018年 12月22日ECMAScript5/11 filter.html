@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["马钰", "张航航", "杜函函", "刘声远"];
+
+	// 要查找数组中第一个字符和第二个字符相等的成员
+
+	// var result = arr.filter(function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return value[1] == value[2];
+	// })
+
+	// console.log(result);
+
+	/**
+	 * filter 实现filter方法
+	 * @arr 要过滤的数组
+	 * @fn 要执行的函数
+	 * return 满足过滤条件组成的新数组
+	 */
+	function filter(arr, fn) {
+		// 创建一个新的数组
+		var result = [];
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			// 执行函数判断结果
+			// 传递三个参数: 成员值 arr[i]， i, 原数组 arr
+			if (fn(arr[i], i, arr)) {
+				// 满足过滤条件的成员，放入新的数组中
+				result.push(arr[i]);
+			}
+		}
+		// 返回新的数组
+		return result;
+	}
+
+
+	// 测试
+
+	// var result = filter(arr, function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return value[1] != value[2];
+	// })
+
+	// console.log(result);
+
+
+	// 兼容IE
+	if (!Array.prototype.filter) {
+		// 拓展该方法
+		Array.prototype.filter = function(fn) {
+			// 创建新的数组
+			var result = [];
+			// 遍历数组, 就是在遍历this
+			for (var i = 0; i < this.length; i++) {
+				// 执行函数传递参数并判定结果
+				// 传递三个参数: 成员值 this[i]， i, 原数组 this
+				if (fn(this[i], i, this)) {
+					// 满足条件的成员要放入新的数组中
+					result.push(this[i]);
+				}
+			}
+			//  返回新的数组
+			return result;
+		}
+	}
+
+
+	var result = arr.filter(function(value, index, arr) {
+		console.log(this, arguments);
+		return value[1] != value[2];
+	})
+
+	alert(result);
+
+
+	</script>
+</body>
+</html>

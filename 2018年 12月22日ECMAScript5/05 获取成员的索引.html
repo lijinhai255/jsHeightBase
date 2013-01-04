@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["马钰", "张鲁航", "杜文函", "刘声远", 3, "杜文函"];
+
+	// 想要查找杜文函的索引
+	// var pos = arr.indexOf("杜文函");
+	// console.log(pos);
+
+	// var pos1 = arr.lastIndexOf("杜文函");
+	// console.log(pos1);
+
+	// var pos = arr.indexOf("3");
+	// console.log(pos);
+
+
+	/**
+	 * indexOf 实现indexOf方法
+	 * @arr 要查找的数组
+	 * @item 要查找的成员
+	 * return 成员的索引值
+	 **/
+	function indexOf(arr, item) {
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			//  i 表示索引值， arr[i] 表示成员值
+			if (arr[i] === item) {
+				// 说明找到该成员， 返回该成员的索引
+				return i;
+			}
+		}
+		// 循环完毕之后没有找到该成员， 返回-1
+		return -1;
+	}
+
+	// 测试
+
+	// var pos = indexOf(arr, "3");
+	// console.log(pos);
+
+	// 兼容IE
+	if (!Array.prototype.indexOf) {
+		// 拓展方法
+		Array.prototype.indexOf = function(item) {
+			// 遍历数组， 就是在遍历this
+			for (var i = 0; i < this.length; i++) {
+				// 查找成员
+				//  i 表示索引值， this[i] 表示成员值
+				if (this[i] === item) {
+					// 说明找到该成员了， 返回索引值
+					return i;
+				}
+			}
+			// 循环完毕之后， 没有找到该成员， 返回-1
+			return -1;
+		}
+	}
+
+	// var pos = arr.indexOf("杜文函");
+	// alert(pos);
+
+
+	// lastIndexOf
+	if (!Array.prototype.lastIndexOf) {
+		// 拓展方法
+		Array.prototype.lastIndexOf = function(item) {
+			// 遍历数组， 就是遍历this
+			for (var i = this.length - 1; i >= 0; i--) {
+				// 查找成员
+				// i 表示索引值， this[i] 表示成员值 
+				if (this[i] === item) {
+					// 找到该成员，返回该成员的索引
+					return i;
+				}
+			}
+			// 循环完毕之后， 没有找到该成员， 返回-1
+			return -1;
+		}
+	}
+
+
+	var pos = arr.lastIndexOf("杜文函");
+	alert(pos);
+
+	</script>
+</body>
+</html>

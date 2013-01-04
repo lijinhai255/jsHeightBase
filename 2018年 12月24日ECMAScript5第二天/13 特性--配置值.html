@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 在ES3.1中
+	// var obj = {
+	// 	a: 1,
+	// 	b: 2
+	// }
+
+	// 可以访问
+	// console.log(obj);
+	// 添加属性
+	// obj.c = 3;
+	// 删除属性
+	// delete obj.a;
+	// 修改属性值
+	// obj.b = 20;
+
+
+	// 在ES5
+	var obj = {
+		color: "green"
+	}
+
+	// 设置特性
+	Object.defineProperty(obj, "color", {
+		// 配置值
+		value: "red"
+	})
+
+
+	// 总结: 
+	// 如果一个对象中，本身存在该属性， 那么描述特性对象中的其它所有属性默认是true
+	// 如果一个对象中，本身没有该属性， 而是通过设置特性的方式添加的属性，此时描述特性对象中的其它所有属性默认都是false
+
+
+
+	</script>
+</body>
+</html>

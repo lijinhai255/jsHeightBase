@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="third.html">third.html</a>
+	<button id="pre">后退</button>
+	<button id="next">前进</button>
+	<script type="text/javascript">
+	// 获取元素
+	var pre = document.getElementById("pre");
+	var next = document.getElementById("next");
+
+
+	// 添加点击事件
+	next.onclick = function() {
+		// history.forward();
+		history.go(1);
+	}
+
+	pre.onclick = function() {
+		// history.back();
+		history.go(-1);
+	}
+	</script>
+</body>
+</html>

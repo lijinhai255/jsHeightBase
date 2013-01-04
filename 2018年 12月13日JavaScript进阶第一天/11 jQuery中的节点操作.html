@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="box">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+		// 创建元素
+		var $li = $("<li>9</li>");
+		var $div = $("<div id='box' class='ccc' data-info='nihao'>content</div>");
+		// 上树
+		// 在jQuery中可以使用子元素选择父元素 appendTo()
+		// $li.appendTo("#box");
+		// 可以使用父元素选择子元素
+		// $("#box").append("<div></div>");
+		
+	</script>
+</body>
+</html>

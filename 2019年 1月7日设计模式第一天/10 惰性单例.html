@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var single = (function() {
+		// 定义构造函数
+		function People(name, age, sex) {
+			console.log("惰性单例");
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+
+		// 定义变量保存单例
+		var instance = null;
+		// 定义接口函数
+		return function(name, age, sex) {
+			// 判断单例是否存在
+			if (!instance) {
+				return instance = new People(name, age, sex);
+			}
+			// 已经存在 直接返回
+			return instance;
+		}
+	})();
+
+
+	var p = single("小明", 12, "男");
+	var p1 = single("小红", 11, "女");
+
+	// 这个叫做惰性单例， 执行单例的时机是在“第一次执行的时候”
+	// 当页面打开的时候， 不需要去加载单例中的内容，比普通单例加载的内容要少了很多， 因此用户看到页面渲染的时间将会缩减，提高用户体验
+	</script>
+</body>
+</html>

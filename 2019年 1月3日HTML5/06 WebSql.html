@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// console.log(openDatabase);
+
+
+	// 创建数据库
+	var db = openDatabase("19期数据库", 1, "这是19期班的数据库", 1024 * 1024);
+
+	console.log(db);
+
+	// db.transaction(function(ta) {
+	// 	// console.log(arguments);
+	// 	// console.log(ta);
+	// 	ta.executeSql("create table student (name varchar(20), age int(10))", [], function() {
+	// 		console.log("创建成功");
+	// 	}, function() {
+	// 		console.log("创建失败");
+	// 	})
+	// })
+
+	// 插入数据
+	db.transaction(function(ta) {
+		// console.log(arguments);
+		// console.log(ta);
+		ta.executeSql("insert into student values('小明', 12)", [], function() {
+			console.log("插入成功");
+		}, function() {
+			console.log("插入失败");
+		})
+	})
+	</script>
+</body>
+</html>

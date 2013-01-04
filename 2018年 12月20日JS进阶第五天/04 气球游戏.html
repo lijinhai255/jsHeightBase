@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		// 当打开页面的时候，要出现一个气球，气球的垂直位置不固定 气球不停的向右飘动。气球的颜色也不是固定的。
+		// 分析：“要出现一个气球” 表示气球一开始不在页面上 后来出现的 => 创建元素 + 上树 + 元素的背景图设置 
+		// “气球的垂直位置不固定” => 气球的定位值是随机的
+		// “气球不停的向右飘动” => 改变left定位值 有一个定时器
+		// “气球的颜色也不是固定的” => 背景定位值不是固定的
+
+		// 创建元素
+		var balloon = document.createElement("div");
+		// 上树
+		document.body.appendChild(balloon);
+		// 设置背景图
+		balloon.style.backgroundImage = "url(./images/balloon.jpg)";
+		balloon.style.backgroundPositionX = - (500 / 4) * parseInt(Math.random() * 4) + "px";
+		balloon.style.backgroundPositionY = - (500 / 3) * parseInt(Math.random() * 3) + "px";
+		// 设置元素宽高
+		balloon.style.width = 500 / 4 + "px";
+		balloon.style.height = 500 / 3 + "px";
+		// 设置定位置
+		balloon.style.position = "absolute";
+		// 设置top值
+		balloon.style.top = Math.random() * (document.documentElement.clientHeight - balloon.clientHeight) + "px"
+		// 让该元素开始移动
+		setInterval(function() {
+			balloon.style.left = balloon.offsetLeft + 3 + "px";
+		}, 50)
+	</script>
+</body>
+</html>	

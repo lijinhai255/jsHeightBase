@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body style="height: 2000px">
+<script type="text/javascript" src="js/bindEvent.js"></script>
+<script type="text/javascript">
+// 绑定事件
+bindEvent(window, 'mousewheel', function(e) {
+	// 兼容事件对象
+	e = e || window.event;
+	// 标准浏览器下，滚轮滚动信息
+	// console.log(e.wheelDelta)
+	// 火狐，滚轮滚动信息
+	console.log(e.detail)
+})
+</script>
+</body>
+</html>

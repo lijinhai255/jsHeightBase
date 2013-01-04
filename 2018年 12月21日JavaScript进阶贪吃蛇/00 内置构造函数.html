@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 宿主环境： 浏览器也支持一些内置构造函数
+	// 比如: 
+	// var img = new Image();
+	// console.log(img);
+	// var img1 = document.createElement("img");
+	// console.log(img1)
+
+
+	// ECMAScript核心语法自带的一些内置构造函数：
+	// 	Function、Object、 Array、 String、 Number、 Boolean、 RegExp、 Date、 Error
+
+	// Function 
+	// 使用方式: 接收任意个字符串参数，除了最后一个参数，其它的都是形参
+	// var fun = new Function("a", "b", "return a + b");
+	// var result = fun(1, 2);
+	// console.log(fun.length);
+
+	// RegExp
+	// var reg = /^\s+$/g;
+	// var reg1 = new RegExp("\\s+", "g");
+	// console.log(reg);
+	// console.log(reg1);
+
+
+	// String
+	// 是string值类型的对应包装类型
+	// var str = "abcdefg";
+	// var str_obj = new String(str);
+
+	// 举例说明字符串调用方法的过程
+	// str.split("");
+	// var str = new String("abcdefg");
+	// 返回数组， 原str不变， 清空str
+
+
+	// Number
+	// var num = "3a";
+	// var num_obj = new Number(num);
+	// Number本身不是一个安全类， 当Number自执行的时候，会作为类型转换函数来使用
+	// var num1 = Number(num);
+
+
+	// boolean
+	// var f = false;
+	// var f_obj = new Boolean(f);
+	// !f  true !f_obj fasle
+	
+
+	</script>
+</body>
+</html>

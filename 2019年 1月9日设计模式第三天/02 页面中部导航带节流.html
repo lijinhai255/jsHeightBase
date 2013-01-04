@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 980px;
+			margin: 0 auto;
+		}
+		.header {
+			height: 1000px;
+			background-color: orange;
+		}
+		ul {
+			list-style: none;
+		}
+		.container ul li {
+			height: 400px;
+			font-size: 100px;
+			border: 1px solid blue;
+			text-align: center;
+		}
+		.nav {
+			position: fixed;
+			width: 30px;
+			height: 200px;
+			left: 10px;
+			top: 50%;
+			margin-top: -100px;
+			border: 1px solid blue;
+			opacity: 0;
+		}
+		.nav ul li {
+			height: 20px;
+			font-size: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav" id="nav">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+	</div>
+	<div class="header"></div>
+	<div class="content">
+		<div class="container">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+
+	function aaa() {
+		$("#nav").animate({"opacity": 1}, 2000, function() {
+			console.log("出现了");
+		})
+	}
+	var timer = null;
+	// 给document添加onscroll事件
+	document.onscroll = function() {
+		// 获取页面的卷动值
+		var scrollTop = document.documentElement.scrollTop;
+		// console.log(scrollTop);
+		// 不断判断页面卷动值
+		if (scrollTop >= 1000 - document.documentElement.clientHeight) {
+			// console.log("该出现了");
+			// 当符合条件的时候， 导航栏要出现了
+			
+			// 清除延时器
+			clearTimeout(timer);
+			// 开启延时器
+			timer = setTimeout(aaa, 1000);
+		} else {
+			clearTimeout(timer);
+		}
+	}
+
+
+
+	// 当前页面中使用的方式确实可以实现节流，但是如果其它函数也要进行节流， 无法复用， 所以我们要将节流的共同点提取出来， 最终完成一个节流器函数
+	</script>
+</body>
+</html>

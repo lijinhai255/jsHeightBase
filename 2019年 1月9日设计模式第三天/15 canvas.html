@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="500"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+
+	// 绘制圆
+	// 命令的定义
+	function drawCircle() {
+		// 开启路径
+		ctx.beginPath();
+		// 绘制弧
+		ctx.arc(500, 250, 50, 0, Math.PI * 2);
+		// 闭合路径
+		ctx.closePath();
+		// 描边
+		ctx.stroke();
+	}
+
+	// 命令的调用
+	drawCircle();
+
+	// 当使用命令模式的时候，要人为的区别命令的定义与调用
+	</script>
+</body>
+</html>

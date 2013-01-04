@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="600" height="600"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+	// 绘制矩形
+	// ctx.fillRect(100, 100, 400, 400);
+
+	// 平移坐标系
+	ctx.translate(canvas.width / 2, canvas.height / 2);
+	ctx.fillRect(-200, -200, 400, 400);
+
+
+	// 定义角度
+	var deg = Math.PI / 180;
+
+	// 信号量
+	var i = 0;
+
+	// 开启定时器
+	var timer = setInterval(function() {
+		// 信号量改变
+		i++;
+		// 清屏
+		ctx.clearRect(-1000, -1000, 30000, 30000);
+		// 保存状态
+		ctx.save();
+		// 旋转
+		ctx.rotate(deg * i);
+		// 渲染
+		ctx.fillRect(-200, -200, 400, 400);
+		// 恢复状态
+		ctx.restore();
+
+		// 保存状态
+		ctx.save();
+		// 改变填充色
+		ctx.fillStyle = "orange";
+		// 绘制矩形
+		ctx.fillRect(100, -100, 100, 100);
+		// 恢复状态
+		ctx.restore();
+
+	}, 200)
+	</script>
+</body>
+</html>

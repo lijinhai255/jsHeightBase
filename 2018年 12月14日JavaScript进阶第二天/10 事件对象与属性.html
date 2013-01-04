@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			background-color: red;
+			overflow: hidden;
+		}
+		#box1 {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			margin: 50px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1"></div>
+	</div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// 添加点击事件
+	box.onclick = function(e) {
+		// 当事件执行的时候，会产生一系列的信息， 浏览器将这些信息封装成一个对象传递到事件函数中
+		// console.log(e);
+		// offsetX offsetY
+		// console.log("鼠标位于元素内的距离:", e.offsetX);
+		// console.log("鼠标位于元素内的距离:", e.offsetY);
+
+
+		// clientX, clientY 
+		// console.log("鼠标位于视口中的X位置:", e.clientX);
+		// console.log("鼠标位于视口中的Y位置:",e.clientY);
+
+		// pageX pageY
+		// console.log("鼠标位于页面中的X位置:" ,e.pageX);
+		// console.log("鼠标位于页面中的Y位置:", e.pageY);
+
+
+		// screenX screenY
+		console.log(e.screenX);
+		console.log(e.screenY);
+	}
+	</script>
+</body>
+</html>

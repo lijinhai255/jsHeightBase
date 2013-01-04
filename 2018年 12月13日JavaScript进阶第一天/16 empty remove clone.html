@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li>哈哈</li>
+			<li>哈哈</li>
+			<li>哈哈</li>
+			<li>哈哈</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	// empty 清空自己，自己还在。
+	// $("#box").empty();
+
+	// 表示自杀，自己和后代都没了。
+	// $("#box").remove();
+
+
+
+	// clone 不用写参数，就表示所有的后代被复制。天生会复制后代。
+	// $("#box").after($("#box").clone())
+
+
+	// 添加点击事件
+	// $("#box").click(function(){
+	// 	alert("123");
+	// });
+	// // 如果加上true，就表示事件监听也被复制了。
+	// $("#box").after($("#box").clone(true))
+	</script>
+</body>
+</html>

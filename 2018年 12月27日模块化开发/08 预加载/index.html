@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="sea.js"></script>
+	<!-- 第一步在seajs之后引入preload.js文件 -->
+	<script type="text/javascript" src="seajs-preload.js"></script>
+	<script type="text/javascript">
+	// 第二步要进行perload配置
+	seajs.config({
+		preload: ["jquery-1.7.2"]
+	})
+
+	seajs.use("main", function(main) {
+		console.log(main);
+		console.log($);
+	})
+	</script>
+</body>
+</html>

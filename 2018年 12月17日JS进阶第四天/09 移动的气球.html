@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+// 定义气球类
+function Ball(src) {
+	// 存储数据
+	this.src = src;
+	// 创建图片
+	this.img = document.createElement('img')
+	// 气球元素
+	this.dom = document.createElement('div')
+	// 元素的宽高
+	this.width = 0;
+	this.height = 0;
+	// 元素的位置
+	this.top = 0;
+	this.left = 0;
+	// 方法定义功能
+	this.init = function() {
+		// 备份this
+		var me = this;
+		// 监听图片加载完成
+		this.img.onload = function() {
+			// 根据图片的宽高，计算元素的宽高
+			me.width = me.img.width / 4;
+			me.height = me.img.height / 3; 
+			// 绘制气球
+			me.createBall();
+			// 上树
+			me.upTree();
+			// 绘制动画
+			me.animate()
+			console.log('加载完成', me, me.img.width, me.img.height)
+		}
+		// 加载图片
+		this.img.src = this.src
+	}
+	// 定义其他功能
+	// 绘制气球
+	this.createBall = function() {
+		// 设置样式
+		this.dom.style.width = this.width + 'px';
+		this.dom.style.height = this.height + 'px';
+		// 定位
+		this.dom.style.position = 'absolute';
+		// 横纵坐标
+		this.dom.style.top = this.top + 'px';
+		this.dom.style.left = this.left + 'px';
+		// 背景
+		this.dom.style.backgroundImage = 'url(' + this.src + ')';
+		// 位置
+		this.dom.style.backgroundPositionX = -this.width * parseInt(Math.random() * 4) + 'px';
+		this.dom.style.backgroundPositionY = -this.height * parseInt(Math.random() * 3) + 'px';
+	}
+	// 气球元素上树
+	this.upTree = function() {
+		// 上树
+		document.body.appendChild(this.dom)
+	}
+	// 移动气球
+	this.move = function() {
+		// 横向移动
+		this.left += 1;
+		// 更改样式
+		this.dom.style.left = this.left + 'px';
+	}
+	// 循环移动
+	this.animate = function() {
+		// 缓存this
+		var me = this;
+		// 每30毫秒移动一次
+		setInterval(function() {
+			// console.log(this)
+			// 移动图片
+			me.move();
+		}, 30)
+	}
+}
+
+// 实例化
+var b = new Ball('images/balloon.jpg');
+// 执行
+b.init();
+</script>
+</body>
+</html>

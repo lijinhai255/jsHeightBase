@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var obj = {
+
+	}
+
+	var result = obj;
+
+	// 1 给result添加一个a属性
+	result.a = {};
+
+	// 2 改变result的地址， 新的地址是result.a  
+	result = obj.a;
+
+	// 3 给result添加一个b属性， 其实就是给obj.a添加一个b属性
+	result.b = {};
+
+	// 4 改变result的地址， 新的地址是result.b
+	result = result.b;  // obj.a.b
+
+	// 5 给result添加一个c属性， 值是123
+	result.c = 123;  // obj.a.b.c = 123;
+	</script>
+</body>
+</html>

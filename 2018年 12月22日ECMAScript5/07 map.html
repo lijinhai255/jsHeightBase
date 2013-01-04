@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["马钰", "张鲁航", "杜文函", "刘声远"];
+
+	// 使用map遍历数组
+	// var result = arr.map(function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return "十九期:" + value;
+	// })
+
+	// console.log(result);
+
+
+	/**
+	 * map 实现map方法
+	 * @arr 要遍历的数组
+	 * @fn  要执行的函数
+	 * return 新的数组
+	 */
+	function map(arr, fn) {
+		// 定义结果数组容器
+		var result = [];
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			// 执行函数并传递参数
+			// 传递三个参数: 成员值 arr[i], 索引值 i, 原数组 arr 
+			// 将执行的结果放入结果数组容器中
+			result.push(fn(arr[i], i, arr));
+		}
+		// 返回result
+		return result;
+	}
+
+	// 测试
+	// var result = map(arr, function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return "十九期:" + value;
+	// })
+
+	// console.log(result);
+
+
+
+	// 兼容IE
+	if (!Array.prototype.map) {
+		// 拓展该方法
+		Array.prototype.map = function(fn) {
+			// 定义结果容器
+			var result = [];
+			// 遍历数组, 就是在遍历this
+			for (var i = 0; i < this.length; i++) {
+				// 执行函数并传递三个参数
+				// 成员值 this[i], 索引值 i, 原数组 this
+				result.push(fn(this[i], i, this));
+			}
+			// 返回新的数组
+			return result;
+		}
+	}
+
+
+	// 测试
+	var result = arr.map(function(value, index, arr) {
+		// console.log(this, arguments);
+		return "十九期同学:" + value;
+	})
+
+	alert(result);
+	</script>
+</body>
+</html>

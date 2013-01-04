@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["马钰", "张鲁航", "杜文函", "刘声远"];
+
+	// 判断数组中成员是否都是3个字符
+	// var result = arr.every(function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return value.length == 3;
+	// })
+	// console.log(result);
+
+
+
+	/**
+	 * every 实现every方法
+	 * @arr 要判断的数组
+	 * @fn 要执行的函数
+	 * return bool 判断数组中是否都满足条件
+	 */
+	function every(arr, fn) {
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			// 执行函数并判断结果
+			// 传递三个参数： 成员值 arr[i], 索引值 i, 原数组 arr
+			if (!fn(arr[i], i, arr)) {
+				// 遇到不满足条件的成员就停止遍历并返回false
+				return false;
+			}
+		}
+		// 遍历完成， 都满足条件就返回true
+		return true;
+	}
+
+	// 测试
+	var result = every(arr, function(value, index, arr) {
+		console.log(this, arguments);
+		return value.length == 3;
+	})
+	console.log(result);
+
+
+	// 兼容IE
+
+	</script>
+</body>
+</html>

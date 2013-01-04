@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box1 {
+			width: 500px;
+			height: 500px;
+			margin: 0 auto;
+			background-color: red;
+		}
+		#box2 {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<div id="box2">
+			
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		var box1 = document.getElementById("box1");
+		var box2 = document.getElementById("box2");
+
+		box1.onclick = function(e) {
+			console.log("box1的this是", this)
+			console.log("box1的target是", e.target);
+			console.log("box1的curretnTarget是", e.currentTarget);
+		}
+		// 当点击box1的时候 事件触发 this、 target、currentTarget都是box1
+		// 当点击box2的时候 事件触发 this、currentTraget都是box1 但是target指的是box2
+		// 总结：this、currentTarget永远指向绑定事件的元素 target指向的不定，要看谁触发了事件
+	</script>
+</body>
+</html>

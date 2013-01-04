@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 继承: 类与类之间的方法和属性的继承
+		// 定义类
+		function People(name, age, sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		// 定义另外一个类
+		function Student(name, age, sex, grade) {
+			// 让Student继承People的属性
+			// 属性的继承 叫做构造函数式继承
+			People.apply(this, arguments); // 这条代码就是在给Student的实例添加三个属性
+			this.grade = grade;
+		}
+
+		// 初始化一个人
+		var p1 = new People("小明", 12, "男");
+		console.log(p1);
+
+		// 初始化一个学生
+		var s1 = new Student("小红", 13, "女", 6);
+		console.log(s1);
+
+		console.log(s1 instanceof Student);
+		console.log(s1 instanceof People);
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="sea.js"></script>
+	<script type="text/javascript">
+	// 配置alias
+	seajs.config({
+		alias: {
+			"jquery": "module/js/jquery-1.7.2"
+		}
+	})
+
+	// 引入jquery
+	seajs.use("jquery", function(jq) {
+		console.log(jq);
+	})
+	</script>
+</body>
+</html>

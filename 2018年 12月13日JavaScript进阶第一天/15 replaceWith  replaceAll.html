@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>A</p>
+	<p>B</p>
+	<p>C</p>
+	<p>D</p>
+	<p>E</p>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+	//  replaceWith 将所有匹配的元素 替换成指定的元素。
+	// $("p").replaceWith("<div></div>")
+
+	// 用指定的元素替换掉所有 匹配到的元素。
+	$("<div></div>").replaceAll("p")
+	</script>
+</body>
+</html>

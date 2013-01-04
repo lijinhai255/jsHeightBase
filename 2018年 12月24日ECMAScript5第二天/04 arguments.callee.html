@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 开启严格模式
+	"use strict"
+	// 安全类
+	function People(name, age, sex) {
+		// 判断this指向
+		if (this instanceof arguments.callee) {
+			// 说明是使用new 来调用
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		} else {
+			// 说明没有使用new 来调用
+			return new arguments.callee(name, age, sex);
+		}
+	}
+
+	// 实例化对象
+	var p = new People("小明", 12, "男");
+	var p1 = People("小红", 11, "女");
+	</script>
+</body>
+</html>

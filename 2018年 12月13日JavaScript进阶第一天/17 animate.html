@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			top: 100px;
+			left: 0;
+		}
+		#rightBtn {
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			position: fixed;
+			bottom: 100px;
+			left: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		// 想要让元素box动画到1000的位置
+		var box = document.getElementById("box");
+		/*
+		 * animate 函数能够实现动画
+		 * @dom  要运动的元素 
+		 * @json  css样式对象
+		 * @time  时间  以毫秒值为单位
+		 * callback 回调函数 
+		 */
+		function animate(dom, json, time, callback) {
+			// 逻辑
+			/*
+			使用间隔定时器 循环动画到目标位置 
+			既然是循环动画 那么就是一次动画一个步长
+			首要问题是计算出步长。
+			单次步长 = 总移动距离 / 总移动次数
+			总移动次数 = 总时间除以定时器的间隔 
+			总移动距离 = 目标值 - 初始值 
+			*/
+			// 计数器
+			var count = 0;
+			// 定义定时器间隔
+			var interval = 20;
+			// 总次数 = 总距离/步长
+			// 总次数 = 总时间 / 间隔
+			var allCount = time / interval;
+			// json传递进来的每一个值都是该属性的目标值 
+			// 我们只要知道当时的初始值 用目标值 - 初始值 得到总距离
+			// 有多少目标值样式 不知道 但是只要知道一点： “有多少目标值就得有多少个初始值”
+			var nowjson = {
+			};
+			// nowjson是用于存放初始值的对象 里面的值要取决于参数json内的内容
+			for(var i in json) {
+				nowjson[i] = parseInt(getComputedStyle(dom)[i]);
+			}
+
+			console.log(nowjson);
+			// 循环完毕 初始值也就有了 
+			// 再计算总距离 最后计算出步长值
+			var stepJson = {
+
+			};
+			for(var i in json) {
+				stepJson[i] = (json[i] - nowjson[i]) / allCount;
+			}
+			// 循环完毕 每一个值的步长值就有了
+			// 定时器
+			var timer = setInterval(function() {
+				// 计数器
+				count++;
+				for(var i in json) {
+				 	// 当前值 = 初始值 + 步长值 * 次数
+				  dom.style[i] = nowjson[i] + stepJson[i] * count + "px";
+				}
+				// 判定是否执行完毕
+				if(count >= allCount) {
+					// 说明执行到目的地了
+					// 停表
+					clearInterval(timer);
+					// 拉终
+					for(var i in json) {
+						dom.style[i] = json[i] + "px";
+					}
+					// 回调函数执行
+					// callback && callback();
+					callback && callback.call(dom);
+				}
+			}, interval);
+		}
+
+
+		// 整体思路： 获取目标值 再获取初始值 得到总距离 定义定时器的执行间隔 获取时间 得到总次数  总距离/总次数 就是步长  使用setInterval不停地改变dom元素的每一个css值 让元素不停地改变样式 造成动画的错觉。 定义一个计数器 每改变一次样式就累加一次 直到 计数器大于等于总次数 说明执行完毕 此时强行拉到终点 停表
+
+		// 测试
+		animate(box, {left: 999, top: 498}, 999, function() {
+			console.log("执行完毕");
+			console.log(this)
+		});
+	  
+
+	</script>
+</body>
+</html>

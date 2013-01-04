@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			/*background-image: url(imgs/head_pic.jpg);*/
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<img src="imgs/head_pic.jpg" alt="" id="pic">
+	<canvas id="myCanvas" width="2048" height="1365"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+	var img = document.getElementById("pic");
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+	// 绘制图片
+	img.onload = function() {
+		// 当图片加载完毕之后，绘制图片
+		// ctx.drawImage(img, 0, 0);
+		// 缩放图片 1 / 2
+		// ctx.drawImage(img, 0, 0, this.width / 2, this.height / 2);
+		// 截取图片的某一部分
+		ctx.drawImage(img, 900, 80, 840, 1260, 0, 0, 380, 630);
+	}
+
+	</script>
+</body>
+</html>

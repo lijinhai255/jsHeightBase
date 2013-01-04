@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="sea.js"></script>
+	<script type="text/javascript">
+	// 配置
+	seajs.config({
+		// 配置vars
+		vars: {
+			"j": "jquery"
+		}
+	})
+	// 引入入口文件
+	seajs.use("module/js/main", function() {});
+	</script>
+</body>
+</html>

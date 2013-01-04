@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 要求: 全局中只有一个namespace函数， 该函数可以实现两种功能， 1 可以存储数据， 2 可以读取数据
+	// 存储数据: namespace("a.b.c", 123);
+	// 读取数据: namespace("a.b.c") => 123
+	// 读取数据: namespace("a.b") => {c: 123};
+	// 读取数据: namespace("a") => {b: {c: 123}};
+	// {
+	// 	b: {
+	// 		c: 123
+	// 	}
+	// }
+
+	// 该函数可以实现两种功能：
+	// 第一种是存储数据:  当存储数据的时候接收两个参数， 第一个参数是路径， 第二个参数要存储的数据
+	// 第二种是读取数据:  当读取数据的时候接收一个参数， 要读取的数据
+
+	var namespace = (function() {
+		var obj = {
+			// a: {
+			// 	b: {
+			// 		c: 123,
+			// 		d: 234
+			// 	}
+			// }
+		}
+
+		// 定义接口函数
+		return function(path, val) {
+			// 使用函数重载模拟
+			// 判断传递的参数是一个函数两个
+			if (arguments.length === 2) {
+				// 说明是要存储数据
+				// console.log("存储数据");
+				// 第一步要把path分割为数组
+				var pathArr = path.split(".");
+				// console.log(pathArr);
+
+				// 备份obj
+				var result = obj;
+				// 第二步要按照数组层级往obj中添加属性
+				for (var i = 0; i < pathArr.length - 1; i++) {
+					result[pathArr[i]] = {};
+					result = result[pathArr[i]];
+				}
+				// 进行赋值
+				result[pathArr[i]] = val;
+				console.log(obj);
+			} else if (arguments.length === 1) {
+				// 说明是要读取数据
+				console.log("读取数据");
+			}
+		}
+	})();
+
+	namespace("a.b.c", 123);
+	// namespace("a.b.d", 234);
+	</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 100%;
+			height: 100px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript" src="js/zepto.js"></script>
+	<script type="text/javascript">
+	// jquery中有个click事件，用于代替原生中onclick事件
+	// tap也可以理解为类似的功能
+
+	// 获取当前时间
+	// var date = new Date();
+
+	$("#box").tap(function() {
+		console.log("tap");
+		// console.log("tap", new Date() - date);
+	})
+
+
+	// touchstart
+	// $("#box")[0].addEventListener("touchstart", function() {
+	// 	console.log("touchstart");
+	// 	console.log("touchstart", new Date() - date);
+	// })
+
+
+	// onclick
+	// $("#box")[0].onclick = function() {
+	// 	console.log("onclick");
+	// 	console.log("onclick", new Date() - date);
+	// }
+
+
+
+	// doubleTap
+	// $("#box").doubleTap(function() {
+	// 	console.log("doubleTap");
+	// })
+
+	// singleTap
+	// $("#box").singleTap(function() {
+	// 	console.log("singleTap");
+	// })
+
+
+	// longTap 750ms之后执行的
+	// $("#box").longTap(function() {
+	// 	console.log("longTap");
+	// })
+
+
+	// swipe
+	$("#box").swipe(function() {
+		console.log("滑动");
+	})
+
+	// swipeLeft
+	$("#box").swipeLeft(function() {
+		console.log("左滑");
+	})
+
+
+	// swipeRight
+	$("#box").swipeRight(function() {
+		console.log("swipeRight")
+	})
+
+
+	// swipeUp
+	$("#box").swipeUp(function() {
+		console.log("swipeUp")
+	})
+
+	// swipeDown
+	$("#box").swipeDown(function() {
+		console.log("swipeDown")
+	})
+
+	</script>
+</body>
+</html>

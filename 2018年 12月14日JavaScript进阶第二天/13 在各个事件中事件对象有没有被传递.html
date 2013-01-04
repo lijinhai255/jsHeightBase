@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// dom2级绑定方式
+	// box.addEventListener("click", function(e) {
+	// 	console.log(e);
+	// 	console.log(this);
+	// })
+
+
+	// attachEvent
+	box.attachEvent("onclick", function(e) {
+		console.log(e);
+		console.log(this);
+	})
+
+
+	// 总结:
+	// 在dom2级绑定事件中， 事件对象可以被传递到事件函数中
+	// 在attachEvent事件中， 事件对象也是可以被传递的
+
+	</script>
+</body>
+</html>

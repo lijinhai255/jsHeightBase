@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="1024" height="682.5"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+	// 绘制坐标系
+	drawXY();
+
+	// 改变坐标系
+	ctx.translate(canvas.width / 2, canvas.height / 2);
+
+
+
+	// 再次绘制坐标系
+	drawXY();
+	
+
+
+
+
+	// 封装一个函数，传递两个点， 绘制两个点之间的线段
+	function line(x1 ,y1, x2, y2) {
+		// 开启路径
+		ctx.beginPath();
+		// 移动画笔到某个位置
+		ctx.moveTo(x1, y1);
+		// 移动画笔到x2, y2的位置
+		ctx.lineTo(x2, y2);
+		// 描边
+		ctx.stroke();
+	}
+
+
+
+	function drawXY() {
+		// X轴
+		line(5, 5, 790, 5);
+		line(785, 0, 790, 5);
+		line(785, 10, 790, 5);
+
+		// Y轴
+		line(5, 5, 5, 590);
+		line(0, 585, 5, 590);
+		line(10, 585, 5, 590);
+	}
+	</script>
+</body>
+</html>

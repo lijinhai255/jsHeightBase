@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 静态变量: 一旦定义之后将无法改变的变量
+
+	// 在ES5， 在ES3.1中无法实现静态变量，但是可以模拟出来
+
+	// 在ES5中
+	// var obj = {
+	// 	name: "老李",
+	// 	age: 30,
+	// 	sex: "男"
+	// }
+
+	// 如何能够使obj中的属性不被改变？
+	// 冻结对象
+	// Object.freeze(obj);
+
+	// obj = 123;
+
+
+	// 在ES3.1中
+	var Conf = (function() {
+		var obj = {
+			name: "老李",
+			age: 30,
+			sex: "男",
+			aaa: {
+
+			}
+		}
+		// 定义接口函数
+		return function(type) {
+			return obj[type];
+		}
+	})();
+
+	// console.log(Conf("name"));
+	// console.log(Conf("age"));
+	// console.log(Conf("sex"));
+
+	// 当是引用类型的时候， 是无法模拟出静态变量的感觉的
+	console.log(Conf("aaa"));
+	setTimeout(function() {
+		Conf("aaa").c = 123;
+		console.log(Conf("aaa"));
+		
+	}, 2000)
+	
+
+
+
+	</script>
+</body>
+</html>

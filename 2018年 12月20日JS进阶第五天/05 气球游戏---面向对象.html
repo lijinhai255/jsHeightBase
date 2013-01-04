@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 思想： 这是一个气球游戏 我们决定把气球封装成一个类。气球就是该类的实例，气球的所有行为都是该类的实例的功能。气球也有相关属性。
+		// 第一个：气球应当具备什么样的属性和方法？
+		function Balloon(width, height, bgImg) {
+			// 宽度属性
+			this.width = width;
+			// 高度属性
+			this.height = height;
+			// 背景图片
+			this.bgImg = bgImg;
+			// 元素属性
+			this.dom = document.createElement("div");
+			// 步长属性
+			this.step = 4;
+			// 定义背景定位属性 其实就是在决定气球的颜色
+			this.column = parseInt(Math.random() * 4);
+			this.row = parseInt(Math.random() * 3);
+			// 定义方法 
+			this.move = function() {
+				// 当前元素的定位值 再加上步长即可
+				this.dom.style.left = this.dom.offsetLeft + this.step + "px";
+			}
+			// 上树方法
+			this.upTree = function() {
+				document.body.appendChild(this.dom);
+			}
+			// 渲染方法
+			this.render = function() {
+				this.dom.style.width = this.width + "px";
+				this.dom.style.height = this.height + "px";
+				this.dom.style.backgroundImage = "url(" + this.bgImg + ")";
+				this.dom.style.backgroundPositionX = -this.width * this.column + "px";
+				this.dom.style.backgroundPositionY = -this.height * this.row + "px";
+				this.dom.style.position = "absolute";
+				this.dom.style.top = parseInt(Math.random() * (document.documentElement.clientHeight - this.height)) + "px";
+			}
+			// 初始化方法
+			this.init = function() {
+				this.upTree();
+				this.render();
+				this.start();
+			}
+			// 开始移动
+			this.start = function() {
+				// 保留this
+				var me = this;
+				setInterval(function() {
+					me.move();
+					console.log("气球移动")
+				}, 50)
+			}
+		}
+		var ball1 = new Balloon(500 / 4, 500 / 3, "./images/balloon.jpg");
+		ball1.init();
+		var ball2 = new Balloon(500 / 4, 500 / 3, "./images/balloon.jpg");
+		ball2.init();
+		var ball3 = new Balloon(500 / 4, 500 / 3, "./images/balloon.jpg");
+		ball3.init();
+
+	</script>
+</body>
+</html>

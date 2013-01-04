@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			width: 980px;
+			margin: 0 auto;
+		}
+		li {
+
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+	<script type="text/javascript">
+ 		// 创建li元素
+ 		var li = document.createElement("li");
+ 		// 设置内部的数字
+ 		li.innerHTML = 11;
+
+ 		// 获取list
+ 		var list = document.getElementById("list");
+ 		// 获取内部的所有li
+ 		var lis = list.getElementsByTagName("li");
+ 		
+ 		setTimeout(function() {
+ 			list.replaceChild(li, lis[5]);
+ 		}, 1000);
+
+		function getChildNodes(dom) {
+			// 定义一个数组
+			var arr = [];
+			// 先输出所有的节点的类型 如果是3 查看是不是空文本
+			for(var i = 0; i < dom.childNodes.length; i++) {
+				console.log(dom.childNodes[i].nodeType);
+				// 判断当前节点的类型是不是文本
+				if(dom.childNodes[i].nodeType === 3) {
+					console.log(dom.childNodes[i].data);
+					// 使用正则表达式匹配dom.childNodes[i].data 是不是空白符
+					// 定义正则表达式
+					var reg = /^\s+$/;
+					if(reg.test(dom.childNodes[i].data)) {
+						console.log("第" + i + "项是一个纯空白");
+						// 既然是空白符 就不要进入了
+					} else {
+						// 如果是一个文本并且内容不是空的 也要进入数组
+						arr.push(dom.childNodes[i]);
+					}
+				} else {
+					// 如果不是文本 直接进入数组
+					arr.push(dom.childNodes[i]);
+				}
+			}
+			// 循环体内主要是在检查哪一项是空白 
+			return arr;
+		}
+	 
+	</script>
+</body>
+</html>

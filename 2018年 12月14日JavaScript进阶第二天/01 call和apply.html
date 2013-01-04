@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="height: 100px">
+	<button id="btn">按钮</button>
+	<script type="text/javascript">
+	// 获取元素
+	var btn = document.getElementById("btn"); 
+
+
+	// 定义函数
+	function fun() {
+		console.log(this, arguments);
+	}
+
+	// 函数自执行
+	// fun();
+
+	// 作为事件函数
+	// document.onclick = fun;
+
+	// document.body.onclick = fun;
+
+	// 使用call方法改变fun的this指向
+	// fun.call(document, 1, 2, 3, 4, 5);
+	// fun.call(btn);
+
+
+
+
+	// 使用apply改变函数的this指向
+	fun.apply(document, [1, 2, 3]);
+	fun.apply(btn, [1, 2, 3]);
+	</script>
+</body>
+</html>

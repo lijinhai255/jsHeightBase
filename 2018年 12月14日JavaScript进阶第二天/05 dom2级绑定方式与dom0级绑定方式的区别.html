@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 500px;
+			height: 500px;
+			background-color: red;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// 添加dom0级事件
+	// box.onclick = function() {
+	// 	console.log(2);
+	// }
+
+
+	// 如果两条输出语句都可以执行， 说明可以绑定多个事件函数， 如果只输出一个，说明只能绑定一个事件函数
+	// 经过测试，只能输出一条语句， 并且是后面的会覆盖前面的
+
+
+	// dom2级
+	box.addEventListener("click", function() {
+		console.log("addEventListener");
+		console.log(this);
+	})
+	box.onclick = function() {
+		console.log(1);
+		console.log(this);
+	}
+
+	// box.addEventListener("click", function() {
+	// 	console.log("addEventListener1");
+	// })
+
+
+	// 总结: dom0级和dom2绑定的事件可以同时存在
+	// 事件执行的顺序是: 代码的绑定顺序
+	// this指向触发事件的对象
+
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			text-align: center;
+		}
+		img {
+			transition: all 1s;
+			/*背面不可见*/
+			backface-visibility: hidden;
+		}
+		img:hover {
+			transform: rotateX(180deg);
+		}
+	</style>
+</head>
+<body>
+	<!-- 默认情况下，图片的背面是图片的倒影 -->
+	<img src="images/0.jpg" alt="">
+</body>
+</html>

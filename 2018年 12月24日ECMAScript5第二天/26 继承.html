@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义父类
+	function People(name, age, sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+
+	// 方法写在原型上
+	People.prototype.sayHello = function() {
+		console.log("大家好, 我的名字叫做" + this.name + ";我的年龄" + this.age + ";我的性别是" + this.sex);
+	}
+
+
+	// 定义子类
+	function Student(name, age, sex, grade) {
+		// 构造函数式继承
+		People.apply(this, arguments);
+		this.grade = grade;
+	}
+
+	// var p = new People();
+	// delete p.name;
+	// delete p.age;
+	// delete p.sex;
+
+
+	// 想要让子类继承父类
+
+	// 要使用类式继承
+	Student.prototype = Object.create(People.prototype);
+
+	// 缺点
+	// 原本
+	// Student.prototype = {constructor: Student};
+
+	// 实例化对象
+	var s = new Student("小明", 12, "男", 6);
+	s.sayHello();
+
+	// 使用类式继承，让子类的原型变成了父类的实例，这种方式会在子类的原型中多出很多个无用的属性:
+	// name: undefined  age: undefined  sex: undefined
+	// 所以Object.create方法就出现了
+	</script>
+</body>
+</html>

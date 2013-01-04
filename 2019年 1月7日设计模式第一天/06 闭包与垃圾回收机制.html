@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 闭包: 一个可以访问其它函数中变量的函数
+
+	function a() {
+		// var d = 123;
+		// 在函数中定义两个变量
+		// 分别是c 对应的是数字
+		// 一个是b 对应的是函数
+		var c = 10;
+		function b() {
+			// 在b函数中每次输出c++的结果
+			console.log(c++);
+		} 
+		// 返回b
+		return b;
+	}
+
+	// 当a函数执行的时候， 就会生成一个闭包
+	var b = a();
+	b(); // 10
+	b(); // 11
+	b(); // 12
+	b(); // 13
+
+
+	// 当a函数再次执行的时候，又会生生一个闭包
+	var b1 = a();
+	b1(); // 10
+	b1(); // 11
+	b1(); // 12
+	b1(); // 13
+
+	// 闭包存在的条件: 就是被外部所持有， 如果没有被外部所持有， 会被垃圾回收机制判定为垃圾， 并被回收
+
+
+
+
+	</script>
+</body>
+</html>

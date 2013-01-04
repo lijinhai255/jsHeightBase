@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 定义一个构造函数
+		function People(name, age, sex) {
+			// 区分外界的调用方式
+			// 如果new 那么this是People的实例
+			if (this instanceof People) {
+				this.name = name;
+				this.age = age;
+				this.sex = sex;
+			} else {
+				// 如果不new 那么this就必定不是People的实例
+				// 强行返回一个People的实例
+				return new People(name, age, sex);
+			}
+		}
+		// 程序员1： 规规矩矩的调用
+		var p1 = new People("王老五", 22, "男");
+		// 程序员2： 不使用new调用
+		var p2 = People("王老四", 21, "男");
+
+
+
+		// 内置构造函数 Object 用于初始化对象
+		var obj = new Object();
+		var obj1 = Object();
+		var obj2 = {};
+
+		// 内置构造函数 Array  用于初始化数组
+		var arr = new Array();
+		var arr1 = Array();
+		var arr2 = [];
+		// 前端分三层： HTML、CSS、JS
+		// JS分三层：DOM、BOM、ECMAScript
+		// 内置构造函数 指的是ECMAScript内部定义的构造函数
+		// Object、Array、Function、Date、Error、RegExp等
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义对象
+	var obj = {
+		a: 1,
+		b: "2",
+		c: {
+			d: 3
+		}
+	}
+
+	// 将obj转为字符串
+	var result = JSON.stringify(obj, function(key, value) {
+		// console.log(arguments);
+		// 我们想要将所有的字符串转为数字
+		if (typeof value === "string") {
+			return +value;
+		}
+		return value;
+	});
+
+	
+	</script>
+</body>
+</html>

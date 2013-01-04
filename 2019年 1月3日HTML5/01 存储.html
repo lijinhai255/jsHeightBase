@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// var a = 10;
+	// 在一个页面中全局变量a的生命周期是从页面打开到关闭
+	// 虽然重新打开之后看到的还是同一个a,  但是已经不是之前的a， 而是重新定义出来的a
+
+	// 在HTML5中,新增了一个存储对象， 叫做localStorage
+
+	// 查看
+	// console.log(localStorage)
+
+	// 定义一个对象
+	var obj = {
+		age: 20,
+		sex: "男"
+	}
+
+	// 在存储的时候转为字符串
+	localStorage.setItem("obj", JSON.stringify(obj))
+
+
+	// 提取数据， 转为原类型
+	var obj1 = JSON.parse(localStorage.getItem("obj"));
+	console.log(obj1);
+
+
+
+	// 本地存储API
+	// 设置数据
+	localStorage.setItem("key", value);
+
+
+	// 获取数据
+	localStorage.getItem("key");
+
+
+	// 删除某一项
+	localStorage.removeItem("key")
+
+
+	// 删除全部
+	localStorage.clear()
+
+
+	</script>
+</body>
+</html>

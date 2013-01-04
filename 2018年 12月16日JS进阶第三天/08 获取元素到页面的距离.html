@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 100px;
+			height: 100px;
+			margin-top: 100px;
+			margin-left: 100px;
+			background-color: red;
+			border: 1px solid #ccc;
+			position: relative;
+		}
+		#box1 {
+			width: 100px;
+			height: 100px;
+			margin-top: 100px;
+			margin-left: 100px;
+			border: 1px solid #ccc;
+			background-color: red;
+			position: relative;
+		}
+		#box2 {
+			width: 100px;
+			height: 100px;
+			margin-top: 100px;
+			margin-left: 100px;
+			border: 1px solid #ccc;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<div id="box2"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// 获取元素
+		var box2 = document.getElementById("box2");
+		// 判定一个浏览器是哪个浏览器
+		var str = window.navigator.userAgent;
+
+		// 定义一个函数 接收一个参数 参数是元素 返回该参数元素到页面的距离
+		function offset(dom) {
+			var obj = {
+				left: 0,
+				top: 0
+			}
+			// 定义变量
+			var isIE8 = str.indexOf("MSIE 8")  === -1 ? false : true;
+			console.log(isIE8)
+			// 一系列计算之后
+			// 判定dom是不是body
+			while (dom != document.body) {
+				if (isIE8) {
+					obj.left += dom.offsetLeft;
+					obj.top += dom.offsetTop;
+				} else {
+					obj.left += dom.offsetLeft  + dom.offsetParent.clientLeft;
+					obj.top += dom.offsetTop   + dom.offsetParent.clientTop;
+				}
+
+				// 当前层级的DOM已经计算完毕 所以要让dom变成上级DOM 不停的循环，不停的累加每一层级的值 DOM不停的变为上一级DOM，迟早有一天它会变成Body 也就意味着 从第一个dom到body的距离都计算了。此时终止计算。
+				dom = dom.offsetParent;
+			}
+			// 返回obj
+			return obj;
+		}
+		var result = offset(box2);
+		console.log(result.left);
+		console.log(result.top);
+	</script>
+</body>
+</html>

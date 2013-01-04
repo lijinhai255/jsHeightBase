@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			width: 980px;
+			margin: 0 auto;
+			height: 160px;
+			background-color: red;
+		}
+		li {
+			height: 20px;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<ul class="a123">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<script type="text/javascript">
+		// 获取.a
+		var ul = document.getElementsByTagName("ul")[0];
+		// 复制
+		var newUl = ul.cloneNode();
+		// var newUl = ul.cloneNode(true);
+		console.log(newUl);
+		document.body.appendChild(newUl);
+	</script>
+
+</body>
+</html>

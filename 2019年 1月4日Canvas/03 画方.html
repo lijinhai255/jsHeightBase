@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		canvas {
+			display: block;
+			margin:0 auto;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="800" height="400"></canvas>
+	<script type="text/javascript">
+	// 获取元素
+	var canvas = document.getElementById("myCanvas");
+
+	// 获取画笔
+	var ctx = canvas.getContext("2d");
+
+	// 在canvas中提供了一个api可以一条代码绘制出图形， 其它都是在操作路径
+	ctx.fillRect(0, 0, 100, 100);
+	ctx.strokeRect(100, 100, 100, 100);
+	ctx.fillRect(200, 200, 100, 100);
+	ctx.strokeRect(300, 300, 100, 100);
+
+	ctx.fillRect(400, 200, 100, 100);
+	ctx.strokeRect(500, 100, 100, 100);
+	ctx.fillRect(600, 0, 100, 100);
+	</script>
+</body>
+</html>

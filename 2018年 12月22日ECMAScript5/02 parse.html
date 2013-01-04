@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义json字符串
+	var str = '{"a": 1, "b": "2", "c": {"d": 3}}';
+
+	// 将str转为js对象
+	var result = JSON.parse(str, function(key, value) {
+		console.log(arguments);
+		// 我们想要让字符串转为数字
+		if (typeof value === "string") {
+			return +value;
+		}
+		return value;
+	});
+	</script>
+</body>
+</html>

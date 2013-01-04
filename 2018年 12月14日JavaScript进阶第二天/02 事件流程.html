@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 500px;
+			height: 500px;
+			background-color: red;
+			margin: 0 auto;
+		}
+		#box1 {
+			width: 250px;
+			height: 250px;
+			margin: 0 auto;
+			background-color: blue;
+		}
+		#box2 {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<div id="box2"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// 给box添加一个点击事件， 再给box1添加点击事件
+	// 当点击box1的时候， 谁的事件会先执行呢？
+	// 事件流程就出来了， 就是规定了父子元素拥有同类事件的时候谁先触发的这么一个规定
+	// 整个事件流程分为捕获和冒泡:
+	// 捕获: 事件从最顶层元素开始执行， 一层一层往下执行，直到最精确的元素
+	// 冒泡: 事件从最精确的元素开始执行，一层一层往上执行， 直到最顶层元素
+
+
+	// dom0级事件 dom.onclick = function() {}  绑定到冒泡阶段
+
+	// 获取元素
+	var box = document.getElementById("box");
+	var box1 = document.getElementById("box1");
+	var box2 = document.getElementById("box2");
+
+
+	// 绑定点击事件
+	box.onclick = function() {
+		console.log("box");
+	}
+
+	box1.onclick = function() {
+		console.log("box1");
+	}
+
+	box2.onclick = function() {
+		console.log("box2");
+	}
+	</script>
+</body>
+</html>

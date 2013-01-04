@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 创建数组
+	var arr = Array(5);
+	// 填充成员
+	// arr.fill(1);
+
+	// arr.fill(function() {
+	// 	console.log("success");
+	// })
+
+	// 遍历数组
+	// arr.forEach(function(value, index, arr) {
+	// 	// console.log(123);
+	// 	console.log(value);
+	// })
+
+
+	/**
+	 * fill 实现fill方法
+	 * @arr 要填充的数组
+	 * @item 要填充的成员
+	 * 返回填充后的数组
+	 */
+	function fill(arr, item) {
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			// 填充数组
+			arr[i] = item;
+		}
+		// 返回填充后的数组
+		return arr;
+	}
+
+
+	// 测试
+
+	// var result = fill(arr, function() {
+	// 	console.log("success");
+	// })
+
+	// 遍历数组
+	// result.forEach(function(value, index, arr) {
+		// console.log(123);
+	// 	console.log(value);
+	// })
+
+
+	// 兼容IE
+	if (!Array.prototype.fill) {
+		// 添加该方法
+		Array.prototype.fill = function(item) {
+			// 遍历数组，就是在遍历this
+			for (var i = 0; i < this.length; i++) {
+				// 填充数组
+				this[i] = item;
+			}
+			// 返回数组
+			return this;
+		}
+	}
+
+	// 测试
+	// 填充成员
+	var result = arr.fill(1);
+
+	alert(result);
+
+
+
+	</script>
+</body>
+</html>

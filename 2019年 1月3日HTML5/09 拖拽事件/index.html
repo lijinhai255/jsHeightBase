@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="imgs/1.png" alt="" id="first">
+	<img src="imgs/trash.png" id="trash">
+	<script type="text/javascript">
+	// 获取元素
+	var img = document.getElementById("first");
+	var trash = document.getElementById("trash");
+
+	// ondrag
+	// img.ondrag = function() {
+		// console.log("拖拽中");
+	// }
+
+	// ondragstart
+	// img.ondragstart = function() {
+		// console.log("拖拽开始");
+	// }
+
+
+	// ondragenter
+	// img.ondragenter = function() {
+	// 	console.log("拖拽进入");
+	// }
+
+	// trash.ondragenter = function() {
+		// console.log("拖拽进入");
+	// }
+
+	// ondragleave
+	// trash.ondragleave = function() {
+	// 	console.log("拖拽离开");
+	// }
+
+	// ondragend
+	// trash.ondragend = function() {
+	// 	console.log("拖拽结束")
+	// }
+
+	// ondragover
+	trash.ondragover = function() {
+		// console.log("悬浮中");
+		return false;
+	}
+
+
+	// ondrop
+	trash.ondrop = function() {
+		console.log("丢弃");
+	}
+
+	</script>
+</body>
+</html>

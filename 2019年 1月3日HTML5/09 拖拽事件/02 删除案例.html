@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="imgs/1.png" alt="" id="first">
+	<img src="imgs/2.png" id="two">
+	<img src="imgs/3.png" alt="" id="three">
+	<img src="imgs/erweima.png" id="erweima">
+	<img src="imgs/sf.jpg" id="sf">
+	<img src="imgs/thanks.png" id="thanks">
+	<img src="imgs/trash.png" alt="" id="trash">
+	<script type="text/javascript">
+	// 获取元素
+	var img = document.getElementById("first");
+	var trash = document.getElementById("trash");
+
+	// 第一种方案
+	// var temp = null;
+	// ondragstart
+	// img.ondragstart = function() {
+	// 	temp = this;
+	// 	console.log("拖拽开始");
+	// }
+
+
+	// 添加ondragover事件并且阻止默认事件
+	// trash.ondragover = function() {
+		// 阻止默认事件
+	// 	return false;
+	// }
+
+	// 丢弃
+	// trash.ondrop = function() {
+	// 	temp.parentNode.removeChild(temp);
+	// 	console.log("丢弃");
+	// }
+
+
+
+	// 获取所有的图片
+	var imgs = [].slice.call(document.getElementsByTagName("img"));
+	var trash = imgs.pop();
+	console.log(imgs);
+
+	imgs.forEach(function(value, index, arr) {
+		// 第二种方案
+		value.ondragstart = function(e) {
+			// console.log(e);
+			e.dataTransfer.setData("aaa", this.id);
+		}
+	})
+
+	
+
+
+		// 添加ondragover事件并且阻止默认事件
+	trash.ondragover = function() {
+		// 阻止默认事件
+		return false;
+	}
+
+	// 丢弃
+	trash.ondrop = function(e) {
+		// console.log(e);
+		var aaa = e.dataTransfer.getData("aaa");
+		console.log(aaa);
+		
+		if (aaa) {
+			var element = document.getElementById(aaa);
+			// console.log(element);
+			element.parentNode.removeChild(element);
+		}
+
+	}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["马钰", "张鲁航", "杜文函", "刘声远"];
+
+	// 遍历数组
+	var result = arr.forEach(function(value, index, arr) {
+		console.log(this, arguments);
+		// return 123;
+	})
+	// console.log(result);
+
+
+	/**
+	 * forEach 实现forEach方法
+	 * @arr 要遍历的数组
+	 * @fn 执行的函数
+	 **/
+	function forEach(arr, fn) {
+		// 遍历数组
+		for (var i = 0; i < arr.length; i++) {
+			// 执行函数并传递参数
+			// 传递三个参数: 成员值 arr[i]， 索引值 i, 原数组 arr
+			fn(arr[i], i, arr);
+		}
+	}
+
+	// var result = forEach(arr, function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	return 123;
+	// })
+	// console.log(result);
+
+
+	// 兼容IE
+	if (!Array.prototype.forEach) {
+		// 拓展该方法
+		Array.prototype.forEach = function(fn) {
+			// 遍历数组, 就是在遍历this
+			for (var i = 0; i < this.length; i++) {
+				// 执行函数并传递参数
+				// 传递三个参数:
+				// 成员值 this[i], 索引值 i, 原数组 this
+				fn(this[i], i, this);
+			}
+		}
+	}
+
+	// 测试
+	// var result = arr.forEach(function(value, index, arr) {
+	// 	console.log(this, arguments);
+	// 	// return 123;
+	// })
+	// alert(result);
+
+
+
+
+	// 测试jquery中的each方法
+	var arr1 = ["马钰", "张鲁航", "杜文函", "刘声远"];
+	
+	// $.each(arr1, function() {
+	// 	console.log(arguments);
+	// })
+
+
+	for (var i = 0, len = arr1.length; i < len; i++) {
+
+	}
+
+	console.log(len, i);
+	</script>
+</body>
+</html>

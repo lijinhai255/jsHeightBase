@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 1120px;
+			margin: 0 auto;
+		}
+		ul {
+			list-style: none;
+			height: 400px;
+		}
+		ul li {
+			line-height: 20px;
+			padding: 3px;
+			overflow: hidden;
+		}
+		ul li:nth-child(odd) {
+			background-color: orange;
+		}
+		ul li span {
+			float: right;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<h1>消息数量: <span id="num">0</span></h1>
+		</div>
+	</div>
+	<div class="content">
+		<div class="container">
+			<ul id="list">
+				<li>你好<span>&times;</span></li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<p><textarea name="" id="words" cols="30" rows="10"></textarea></p>
+			<p><button id="btn">发送</button></p>
+		</div>
+	</div>
+	<script type="text/javascript" src="sea.js"></script>
+	<script type="text/javascript">
+	// 使用use方法引用入口文件
+	seajs.use(["module/main"]);
+	</script>
+</body>
+</html>

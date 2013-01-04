@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			position: fixed;
+			width: 100px;
+			height: 100px;
+			left: 50%;
+			top: 50%;
+			margin-top: -50px;
+			margin-left: -50px;
+		}
+		.box span {
+			position: absolute;
+			width: 300px;
+			left: 0;
+			top: -30px;
+			display: none;
+		}
+		/*.box:hover span {
+			display: block;
+		}*/
+
+		/*虽然使用css可以实现提示文案的效果， 但是当用户只是“路过”的时候， 此时不应该显示文案*/
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<img src="images/erweima.png">
+		<span>这是一个二维码</span>
+	</div>
+	<script type="text/javascript" src="js/Throttle.js"></script>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+	var span = document.getElementsByTagName("span")[0];
+
+	function show() {
+		span.style.display = "block";
+	}
+	// 给box添加mousemove事件
+	box.onmousemove = function() {
+		// console.log(123);
+		
+		// 开启节流器
+		Throttle(show);
+	}
+
+	function hide() {
+		span.style.display = "none";
+	}
+	box.onmouseout = function() {
+		// 关闭节流器
+		Throttle(false, show);
+		
+		//开启节流器
+		Throttle(hide);
+		
+	}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 800px;
+			height: 400px;
+			margin: 0 auto;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script type="text/javascript">
+	// 原本highcharts是jquery的一个插件， 要依赖于jquery
+	$("#box").highcharts({
+		// 标题
+		title: {
+			// 文本
+			text: "日期",
+			// 设置文本样式
+			style: {
+				// 改变颜色
+				color: "red",
+				fontSize: "20px"
+			},
+			// 水平偏移
+			x: 100,
+			// 垂直偏移
+			// y: 100
+			// 浮动
+			floating: true
+		},
+		// 数据列
+		series: [
+			{
+				name: "北京天气",
+				data: [1, 2, 3, 4, 5, 6, 7]
+			}
+		],
+		// x轴
+		xAxis: {
+			title: {
+				text: "日期",
+				// 设置样式
+				style: {
+					color: "blue",
+					fontSize: "20px"
+				}
+			},
+			// 轴标签
+			labels: {
+				// format: "{value}s"
+				style: {
+					color: "red"
+				}
+			},
+			// 轴标签分类
+			categories: [
+				"12月20日",
+				"12月21日",
+				"12月22日",
+				"12月23日",
+				"12月24日",
+				"12月25日",
+				"12月26日",
+			] 
+		},
+		// y轴
+		yAxis: {
+			title: {
+				text: "温度"
+			},
+			// 轴标签
+			labels: {
+				formatter: function() {
+					return this.value + "℃"
+				}
+			}
+		}
+
+	})
+
+	// 后来就不需要再依赖jquery
+	</script>
+</body>
+</html>

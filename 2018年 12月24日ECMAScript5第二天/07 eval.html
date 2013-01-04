@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 开启严格模式
+	"use strict"
+	// 定义变量
+	var strcode = "var a = 10";
+
+	// eval接受一个参数，执行的结果就是字符串代码
+	// eval(strcode);
+
+	// 当eval执行之后， a真的被定义出来了
+
+
+	var e = eval;
+
+	e(strcode);
+	// 这里是告诉大家， 严格模式检测eval的方式
+	</script>
+</body>
+</html>

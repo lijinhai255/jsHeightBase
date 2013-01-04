@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 斐波那契函数
+	// var fibonacci =function(n) {
+	//   return n <2 ? n : arguments.callee(n -1) +arguments.callee(n -2);
+	// }; 
+
+	// fibonacci(40);
+
+	// js是单线程，当js在执行的时候，页面是停止渲染的
+	// 上面的函数在进行大量的计算， 用户点击页面将得不到任何响应（假死状态）
+	
+
+	// 我们特别希望， 当js在大量的事件， 不要阻塞当前线程
+	// HTML5提供了一个Worker函数， 用于开辟一个新的线程
+
+	// 使用方式
+	// 1 将要计算的代码提取到一个js文件中
+	// 2 初始化Worker函数
+
+	var worker = new Worker("computed.js");
+	</script>
+	<button>提交</button>
+</body>
+</html>

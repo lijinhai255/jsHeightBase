@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.process {
+			width: 420px;
+			height: 50px;
+			overflow: hidden;
+			background-color: red;
+		}
+		#bar {
+			position: relative;
+			width: 400px;
+			height: 5px;
+			margin: 25px auto;
+			background-color: blue;
+		}
+		#block {
+			position: absolute;
+			width: 5px;
+			height: 20px;
+			top: 50%;
+			margin-top: -10px;
+			background-color: orange;
+		}
+		#content {
+			width: 0;
+			height: 100%;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<audio src="video/1.mp3" controls id="audio"></audio>
+	<button id="play">播放</button>
+	<button id="pause">暂停</button>
+	<button id="up">音量+</button>
+	<button id="down">音量-</button>
+	<button id="shutup">静音</button>
+	<div class="process">
+		<div id="bar">
+			<div id="block"></div>
+			<div id="content"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// 获取元素
+	var audio = document.getElementById("audio");
+	var play = document.getElementById("play");
+	var pause = document.getElementById("pause");
+	var bar = document.getElementById("bar");
+	var block = document.getElementById("block");
+	var content = document.getElementById("content");
+	var up = document.getElementById("up");
+	var down = document.getElementById("down");
+	var shutup = document.getElementById("shutup");
+
+	// 添加点击事件
+	play.onclick = function() {
+		audio.play();
+	}
+
+	pause.onclick = function() {
+		audio.pause();
+	}
+
+
+	// 添加onmousedown
+	block.onmousedown = function(e) {
+		// 获取鼠标的位置
+		var x = e.clientX;
+		// 获取元素的定位值
+		var left = this.offsetLeft;
+		// 给document添加onmousemove事件
+		document.onmousemove = function(e) {
+			// 获取鼠标移动后的位置
+			var m_x = e.clientX;
+			var result = m_x - x + left;
+
+			// 边界判断
+			if (result < 0) {
+				result = 0;
+			} else if (result > bar.clientWidth - block.clientWidth) {
+				result = bar.clientWidth - block.clientWidth;
+			}
+
+			// 计算进度条比例
+			var r = result / bar.clientWidth;
+			audio.currentTime = r * audio.duration;
+
+
+			// 赋值block的定位值
+			block.style.left = result + "px";
+			// 改变content的宽度
+			content.style.width = result + "px";
+		}
+	}
+
+	// 鼠标抬起取消onmousemove事件
+	document.onmouseup = function() {
+		document.onmousemove = null;
+	}
+
+
+	// 音量+
+	up.onclick = function() {
+		if (audio.volume === 1) {
+			return;
+		}
+		var volume = audio.volume * 10;
+		volume++;
+		audio.volume = volume / 10;
+		console.log(audio.volume);
+	}
+	// 音量-
+	down.onclick = function() {
+		if (audio.volume === 0) {
+			return;
+		}
+		var volume = audio.volume * 10;
+		volume--;
+		audio.volume = volume / 10;
+		console.log(audio.volume);
+	}
+
+
+	// shutup
+	shutup.onclick = function() {
+		if (audio.muted) {
+			shutup.innerHTML = "静音";
+		} else {
+			shutup.innerHTML = "恢复";
+		}
+		audio.muted = !audio.muted;
+	}
+	</script>
+</body>
+</html>

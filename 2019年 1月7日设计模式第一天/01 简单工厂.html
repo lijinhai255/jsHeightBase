@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 所谓简单工厂， 就是创建对象的函数
+
+	// 创建对象有2种方式
+	// var obj = {};
+	// var obj1 = new Object();
+	// console.log(obj, obj1);
+
+
+	// 我们想要使用对象来描述一个人
+	// var person = {
+	// 	name: "老王",
+	// 	age: 35,
+	// 	sex: "男",
+	// 	job: "IT"
+	// }
+
+	// 想要描述多个人， 怎么办？
+	// var person = {
+	// 	name: "老王",
+	// 	age: 35,
+	// 	sex: "男",
+	// 	job: "IT"
+	// }
+
+	// var person = {
+	// 	name: "老李",
+	// 	age: 36,
+	// 	sex: "男",
+	// 	job: "厨师"
+	// }
+
+	// var person = {
+	// 	name: "老张",
+	// 	age: 37,
+	// 	sex: "男",
+	// 	job: "挖掘机"
+	// }
+
+	// 现在我们想要简化创建同类型对象的方式
+
+	// 结果: 使用函数可以复用
+	// function createObject() {
+	// 	var obj = {
+	// 		name: "老王",
+	// 		age: 35,
+	// 		sex: "男",
+	// 		job: "IT"
+	// 	}
+		// 返回obj
+	// 	return obj;
+	// }
+
+	// 调用createObject
+	// var laowang = createObject();
+	// var laoli = createObject();
+
+	// 现在每次调用createObject函数即可得到一个对象， 但是，每次得到的对象中的属性与属性值都是一致的，我们想要得到的每个对象是不一样的，该怎么办呢？
+
+	// 经过观察，我们发现函数是可以传递参数的， 然后我们将不变的写死， 变可变的提取为函数的参数即可
+
+	function createObject(name, age, sex, job) {
+		var obj = {
+			name: name,
+			age: age,
+			sex: sex,
+			job: job
+		}
+		// 返回obj
+		return obj;
+	}
+
+	// 再次调用createObject 并且传递参数
+	var laozhang = createObject("老张", 30, "男", "IT");
+	var laoli = createObject("老李", 30, "男", "厨师");
+
+
+	// 现在通过调用createObject方法并且传递不同的参数即可得到不同的对象
+	// 现在我们称 createObject就是一个“简单工厂”， 每次放入不同的“原料”，即可得到不同的“产品”
+
+
+
+	</script>
+</body>
+</html>

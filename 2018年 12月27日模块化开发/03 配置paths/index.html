@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="sea.js"></script>
+	<script type="text/javascript">
+	// 使用seajs.config方法进行配置
+	seajs.config({
+		// 配置paths
+		paths: {
+			"module": "module/js"
+		}
+	})
+	
+	// 引入jquery
+	seajs.use("module/jquery-1.7.2", function(jq) {
+		console.log(jq);
+	})
+
+
+	// paths只能简化路径， 不能当做alias来使用
+	</script>
+</body>
+</html>

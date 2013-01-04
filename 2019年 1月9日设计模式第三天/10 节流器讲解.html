@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义一个节流函数， 通过该函数可以实现两种功能:  1 开启节流器  2 关闭节流器
+
+	/**
+	 * Throttle 可以实现函数节流
+	 * ① 开启节流器 需要传递两个参数： 第一个参数是一个要节流的函数， 第二个参数是一个配置对象
+	 * @fn 要节流的函数
+	 * @options 是一个配置对象
+	 *          context: 函数在执行的时候要改变的this指向
+	 *          args: [], 是一个数组， 数组中的每一项都是原函数需要的参数
+	 *          time: 延迟的时间
+	 * ② 关闭节流器 第一个参数false， 第二个参数fn
+	 * false是一个标识， 当传递false的时候，确定要是关闭节流器了
+	 * fn: 要节流的函数
+	 * 	
+	 */
+	function Throttle(fn, options) {
+		// 判断fn传递的是函数还是布尔值
+		if (typeof fn === "funciton") {
+			// 配置
+			var options = options || {context: null, args: [], time: 1000};
+			// 说明要开启节流器
+			// 清除延时器
+			clearTimeout(fn.__throttle);
+			// 因为没一个函数要对应的一个延时器， 给fn添加一个自定义属性
+			fn.__throttle = setTimeout(function() {
+				fn.apply(options.context, options.args);
+			}, options.time);
+		} else if (typeof fn === "boolean") {
+			// 确定要关闭节流器
+			// fn 对应的是 false, options对应的是函数
+			clearTimeout(options.__throttle);
+		}
+	}
+
+
+	function aaa() {
+
+	}
+
+	// 调用
+	Throttle(aaa);
+	Throttle(false, aaa);
+	</script>
+</body>
+</html>

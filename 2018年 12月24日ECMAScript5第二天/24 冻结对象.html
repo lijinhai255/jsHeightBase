@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义对象
+	var obj = {
+		a: 1
+	}
+
+	// 冻结对象
+	Object.freeze(obj);
+
+
+	// 添加属性
+	obj.b = 2;
+	// 删除属性
+	delete obj.a;
+	// 修改属性值
+	obj.a = 123;
+
+	console.log(obj);
+
+
+	// 总结: 当冻结了对象之后， 不可以添加属性， 不可以删除属性， 不可以修改属性值
+	
+
+	// 查看对象是否被冻结
+	console.log(Object.isFrozen(obj));
+	</script>
+</body>
+</html>

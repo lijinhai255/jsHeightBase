@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 每一种设计模式， 都有它独特的应用场景
+	// 比如，当我们想要给某个类的实例化对象添加独特的方法和属性， 而不去影响原类
+
+	// 定义构造函数
+	function People(name, age, sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		// this.sayHello = function() {
+		// 	console.log("大家好，我的名字叫做" + this.name + ";我的年龄是" + this.age + ";我的性别是" + this.sex + "孩子");
+		// }
+	}
+	// 方法要写在原型上
+	People.prototype.sayHello = function() {
+		console.log("大家好，我的名字叫做" + this.name + ";我的年龄是" + this.age + ";我的性别是" + this.sex + "孩子");
+	}
+
+	// 实例化对象
+	var xiaoming = new People("小明", 12, "男");
+	var xiaohong = new People("小红", 11, "女");
+	// xiaoming.sayHello();
+	// xiaohong.sayHello();
+
+	// console.log(xiaoming.sayHello === xiaohong.sayHello);
+
+
+	// 我们希望从People构造函数中出来的某个实例化对象，可以拥有不同属性和方法
+	// 现在我们不能将方法或者是属性添加到类的原型中，所以我们要定义一个新的工厂，在该工厂内初始化其它的实例化对象， 并且对该实例化对象进行改造（增强）
+
+
+	// 定义新的工厂
+	function StrongPeople(name, age, sex) {
+		// 这是一个工厂， 在该工厂内部初始化其它的构造函数，这个就做寄生
+		var p = new People(name, age, sex);
+		// 对p进行改造
+		p.title = "nihao";
+		// 添加方法
+		p.say = function() {
+			console.log("你好吗");
+		}
+		// 返回p
+		return p;
+	}
+
+
+	var xiaogang = new StrongPeople("小刚", 12, "男");
+
+	// 现在通过调用StrongPeople即可得到People的实例化对象， 并且该实例化对象中拥有与其它实例化对象不同的属性和方法
+
+
+	</script>
+</body>
+</html>

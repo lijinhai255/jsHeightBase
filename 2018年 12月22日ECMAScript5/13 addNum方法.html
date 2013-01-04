@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义一个函数
+	function addNum(num1, num2) {
+		// 确定最大值和最小值
+		var max = Math.max(num1, num2);
+		var min = Math.min(num1, num2);
+		// console.log(max);
+		// console.log(min);
+
+		// (5, 10)  5, 6, 7, 8, 9, 10  10 - 5 + 1
+		// (5, 10)  6, 7, 8, 9   10 - 5 - 1
+		// 创建数组
+		return Array(max - min + 1)
+		// 填充数组
+		.fill(1)
+		// 构建由最小值到最大值之间的数组
+		.map(function(value, index, arr) {
+			// index是递增的， 由min加上index 即可得到从最小值到最大值之间的数字
+			return min + index;
+		})
+		// 求相加的结果
+		.reduce(function(pre, value, index, arr) {
+			return pre + value;
+		})
+	}
+
+	var result = addNum(1, 50);
+	console.log(result);
+	</script>
+</body>
+</html>

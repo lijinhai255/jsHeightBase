@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="pre">后退</button>
+	<script type="text/javascript">
+	// 获取元素
+	var pre = document.getElementById("pre");
+
+	// 添加点击事件
+	pre.onclick = function() {
+		history.back();
+	}
+	</script>
+</body>
+</html>

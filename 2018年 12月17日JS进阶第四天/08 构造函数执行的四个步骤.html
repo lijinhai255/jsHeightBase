@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+// 执行构造函数步骤
+// 第一步  在函数中，开辟一个空间
+// 第二步  更改this指向（将this指向了我们要创建的对象）
+// 第三步  执行构造函数，为this赋值
+// 第四步  返回创建的实例化对象
+// 构造函数
+var xiaobai = new Person('小白', '男', 190)
+console.log(123, xiaobai)
+// 函数定义式
+function Person(name, sex, height) {
+	// 存储这些数据
+	this.name = name;
+	this.sex = sex;
+	this.height = height;
+}
+// 函数表达式
+// var Person = function(name, sex, height) {
+// 	console.log(111, this)
+// 	// 存储这些数据
+// 	this.name = name;
+// 	this.sex = sex;
+// 	this.height = height;
+// 	// 第四步是说，返回创建的对象
+// 	// return this;
+// 	// 返回值类型的数据
+// 	// return 100
+// 	// return 'hello'
+// 	// return true
+// 	// return undefined
+// 	// return null
+// 	// 引用类型的
+// 	// return []
+// 	// return { color: 'red' }
+// 	// return function() {}
+// }
+// 使用构造函数，就是在创建该类型的对象
+// var xiaobai = new Person('小白', '男', 190)
+// console.log(123, xiaobai)
+
+// 构造函数省略new
+// var xiaobai = Person('小白', '男', 190)
+// console.log(123, xiaobai)
+
+// 普通函数
+// function demo() {
+// 	console.log(this)
+// }
+// demo()
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 寄生式继承: 解决类式继承会携带无用属性的问题。
+		// 定义类
+		function People(name, age, sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		// 添加方法
+		People.prototype.sayHello = function() {
+			console.log("我的名字是" + this.name);
+		}
+		// 定义另外一个类
+		function Student(name, age, sex, grade) {
+			People.apply(this, arguments);
+			this.grade = grade;
+		}	
+		// 分析: 子类的原型上有无用的属性，原因是父类的构造函数内有赋值语句
+		// 解决方案: 千万不要修改父类的构造函数 而应该定义一个新的空构造函数 将该函数的原型与父类的原型保持一致 再初始化该构造函数的实例 再交给子类的原型即可
+		// var F = function() {
+
+		// }
+		// F.prototype = People.prototype;
+		// // 继承这个函数的实例
+		// Student.prototype = new F();
+		// Student.prototype.constructor = Student;
+		// Student.prototype.hi = function() {
+		// 	console.log("hi")
+		// }
+
+		// var s1 = new Student("小红", 13, "女", 6);
+		// s1.sayHello();
+		// s1.hi();
+		// var p1 = new People("小明", 12, "男");
+		// p1.sayHello();
+		// p1.hi();
+
+
+
+		// 将继承过程放入函数 准备复用
+		function jisheng(father, child, obj) {
+			// 定义一个空函数
+			var F = function() {
+
+			}
+			// 将该函数的原型指向父类的原型
+			F.prototype = father.prototype;
+			// 继承
+			child.prototype = new F();
+			child.prototype.constructor = child;
+			for (var i in obj) {
+				child.prototype[i] = obj[i];
+			}
+			return;
+		}
+		jisheng(People, Student, {
+			hi: function() {
+				console.log("hi")
+			}
+		})
+		// 寄生式继承只继承方法 搭配构造函数式继承就是寄生组合式继承。
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 继承: 类与类之间的方法和属性的继承
+		// 定义类
+		function People(name, age, sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		// 添加方法
+		People.prototype.sayHello = function() {
+			console.log("我的名字是" + this.name);
+		}
+		// 定义另外一个类
+		function Student(name, age, sex, grade) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.grade = grade;
+		}	
+		// 将子类的原型指向父类的实例
+		Student.prototype = new People();
+		// 因为缺失了constructor属性 所以要补回来
+ 		Student.prototype.constructor = Student;
+
+ 		// 给子类添加特有方法
+ 		Student.prototype.hi = function() {
+ 			console.log("hi");
+ 		}
+
+ 		// 初始化父类
+ 		var p1 = new People("小明", 12, "男");
+
+ 		// 初始化子类
+ 		var s1 = new Student("小红", 13, "女", 6);
+
+ 		// 调用sayHello方法 该方法父类有
+ 		p1.sayHello();
+ 		s1.sayHello();
+ 		// 子类的实例能够成功调用父类的方法 说明继承成功
+ 		s1.hi(); // 子类调用自己的方法 成功
+ 		// p1.hi(); // 父类调用子类的方法 失败 此时子类再添加方法也不会影响到父类了
+
+
+ 		// 缺点1: 子类的原型上有多个无用的属性，这些属性是因为初始化了父类的实例而带来的。
+ 		// 缺点2: 子类的原型的constructor已经丢失了
+	</script>
+</body>
+</html>

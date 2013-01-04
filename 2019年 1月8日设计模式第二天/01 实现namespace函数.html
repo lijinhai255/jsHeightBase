@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var namespace = (function() {
+		// 定义存储对象
+		var obj = {
+
+		};
+		// 定义接口函数
+		return function(path, val) {
+			// 判断传递几个参数
+			if (arguments.length === 2) {
+				// 说明要存储数据
+				console.log("存储数据");
+				// 将path分割为数组
+				var pathArr = path.split(".");
+				// console.log(pathArr);
+				// 备份obj
+				var result = obj;
+				// 循环往obj中添加数据
+				for (var i = 0; i < pathArr.length - 1; i++) {
+					// 判断当前层级是否是对象，如果是对象就不要再次定义了，直接读取下一层
+					if (typeof result[pathArr[i]] === "object" && result[pathArr[i]] != null) {
+						// 说明是一个对象，读取下一层
+						result = result[pathArr[i]];
+					} else if (typeof result[pathArr[i]] === "undefined") {
+						// 就是值类型，只有undefined可以使用
+						result[pathArr[i]] = {};
+						result = result[pathArr[i]];
+					} else {
+						// 已经被占用
+						throw new Error("不能在值类型上添加数据，或者已经被占用");
+					}
+				}
+				// 判断是否是undefined
+				if (typeof result[pathArr[i]] === "undefined") {
+					// 赋值最后一项
+					result[pathArr[i]] = val;
+				} else {
+					throw new Error("已经被使用");
+				}
+				console.log(obj);
+
+
+			} else if (arguments.length === 1) {
+				// 说明要读取数据
+				console.log("读取数据");
+				// 将路径分割成数组
+				var pathArr = path.split(".");
+				// 备份obj
+				var result = obj;
+				// console.log(pathArr);
+				for (var i = 0; i < pathArr.length - 1; i++) {
+					// 判断当前层级是否是对象
+					if (typeof result[pathArr[i]] === "object" && result[pathArr[i]] != null) {
+						// 说明有内容
+						// 读取下一层
+						result = result[pathArr[i]];
+					} else {
+						return null;
+					}
+				}
+				// 返回读取的数据
+				return result[pathArr[i]];
+			}
+		}
+	})();
+
+
+	namespace("a.b.c", 123);
+	var a = namespace("a");  // {b: {c: 123}};
+	var b = namespace("a.b"); // {c: 123};
+	var c = namespace("a.b.c"); // 123;
+	</script>
+</body>
+</html>

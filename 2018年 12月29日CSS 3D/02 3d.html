@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 560px;
+			height: 300px;
+			margin: 0 auto;
+			border: 1px solid red;
+			/*确定舞台的距离*/
+			perspective: 101px;
+		}
+		img {
+			/*确定演员的距离*/
+			transform: translateZ(100px);
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/0.jpg">
+	</div>
+	<script type="text/javascript">
+	// 2d是平面
+	// 2d中的坐标系 x + y
+	// x 表示正方向向右  y 表示正方向向下
+
+	// 3d是立体
+	// 3d中的坐标系 x + y + z
+	// x 表示正方向向右 y 表示正方向向下  z 垂直于屏幕
+	</script>
+</body>
+</html>

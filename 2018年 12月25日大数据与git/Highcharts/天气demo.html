@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 800px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="js/highcharts.js"></script>
+<script>
+
+    Highcharts.chart('box', {
+        title: {
+            text: '北京天气',
+            style: {
+                color: 'white',
+                fontSize: '20px'
+            }
+        },
+        series: [{
+            data: [0, -5, -6, -7, -8, -5, -2, -4, -6]
+        }],
+        plotOptions: {
+            series: {
+                color: 'white',
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'blod',
+                        color: 'white',
+                        textOutline: 'none'
+                    }
+                }
+            }
+        },
+        chart: {
+            backgroundColor: {
+                linearGradient: [0, 0, 500, 500],
+                stops: [
+                    [0, 'rgb(188, 128, 255)'],
+                    [1, 'rgb(77, 77, 255)']
+                ]
+            }
+        },
+        xAxis: {
+            categories: (function () {
+                var arr = [];
+                var hour = new Date().getHours();
+                for (var i = 0; i < 9; i++) {
+                    if (i === 0) {
+                        arr.push('现在');
+                    } else {
+                        var item = (hour + 3 * i - 2) % 24 + '';
+                        if (item.length === 1) {
+                            item = '0' + item;
+                        }
+                        arr.push(item + '点');
+                    }
+                }
+                return arr;
+            })(),
+            labels: {
+                style: {
+                    color: 'white'
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            labels: {
+                style: {
+                    color: 'white'
+                }
+            }
+        },
+        legend: {
+            enabled: false
+        }
+    })
+
+
+</script>
+</body>
+</html>

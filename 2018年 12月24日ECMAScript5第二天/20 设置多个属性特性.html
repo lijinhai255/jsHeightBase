@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义对象
+	var obj = {
+		num: 100,
+		color: "red"
+	}
+
+	// 设置特性
+	Object.defineProperties(obj, {
+		color: {
+			// 配置值
+			value: "blue",
+			// 不可写入
+			writable: false,
+			// 不可枚举
+			enumerable: false,
+			// 不可配置
+			configurable: false
+		},
+		// 设置特性方法
+		num: {
+			get: function() {
+				return this._num;
+			},
+			set: function(value) {
+				this._num = value;
+			},
+			// 不可枚举
+			enumerable: false,
+			// 一旦设置了特性方法（get, set）， 将无法再次配置writable, value
+			// 不可写入
+			// writable: false
+			// 配置值
+			value: "orange"
+		}
+	})
+
+	// 尝试修改obj中的属性值
+	obj.num = 500;
+	obj.color = "green";
+
+
+	// 枚举
+	for (var i in obj) {
+		console.log(i, obj[i]);
+	}
+	</script>
+</body>
+</html>

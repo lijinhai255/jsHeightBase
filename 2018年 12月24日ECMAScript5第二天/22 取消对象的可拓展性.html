@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义对象
+	var obj = {
+		a: 1
+	}
+
+	// 默认情况下，对象是可以被拓展的
+	// obj.b = 2;
+
+
+	// 取消对象的可拓展性
+	Object.preventExtensions(obj);
+
+	// 尝试添加属性
+	obj.b = 2;
+
+	console.log(obj);
+
+
+	// 总结: 当取消了对象的可拓展性之后，不能再添加属性， 可以删除属性， 可以修改属性值
+
+
+	console.log(Object.isExtensible(obj));
+	</script>
+</body>
+</html>

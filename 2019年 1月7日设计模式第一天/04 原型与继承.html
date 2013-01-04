@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 原型是每个函数都拥有的属性， 值是一个对象
+
+	// 定义构造函数
+	// function People(name, age, sex) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// 	this.sex = sex;
+	// }
+
+	// 方法要写在原型上
+	// People.prototype.sayHello = function() {
+	// 	console.log("大家好，我的名字叫做" + this.name + "我的年龄是" + this.age + "我是一个" + this.sex + "孩子");
+	// }
+
+	// 实例化对象
+	// var xiaoming = new People("小明", 12, "男");
+	// var xiaohong = new People("小红", 11, "女");
+
+	// 调用原型上的方法
+	// xiaoming.sayHello();
+	// xiaohong.sayHello();
+	// 特性: 原型中的所有内容可以被实例化对象所访问
+	// 作用: 共享属性和方法
+
+	/**********************************************************************************/
+
+	// 继承:
+	// 类与类之间的继承
+
+	// 人类具备的方法， 地球人也应该具备， 地球人具备这个方法了， 亚洲人也应该具备这个方法， 亚洲人具备了这个方法， 中国人也应该具备这个方法， 中国人具备了这个方法， 北京人也应该具备这个方法， 北京人具备了这个方法， 昌平人也应该这个方法
+
+
+	// 在代码中如何实现继承？
+	// 继承有5种方式：
+	// 1 类式继承也叫做原型式继承: 将子类的原型指向父类的实例
+	// 2 构造函数式继承: 在子类的构造函数中，执行父类的构造函数并使用apply改变父类构造函数的this指向，并将arguments传递
+	// 3 组合式继承: 类式继承 + 构造函数式继承
+	// 4 寄生式继承: 定义寄生函数，接收两个参数，分别是父类和子类，在寄生函数中，定义一个新的构造函数，将该构造函数的原型指向父类的原型， 将该构造函数的实例交给子类，补回子类constructor属性， 最终返回子类
+	// 5 寄生组合式继承: 在定义类的时候，使用构造函数式继承
+
+
+	// 模拟继承
+	// 定义父类
+	function People(name, age, sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+
+	// 方法要写在原型中
+	People.prototype.sayHello = function() {
+		console.log("大家好，我的名字叫做" + this.name + "我的年龄是" + this.age + "我是一个" + this.sex + "孩子");
+	}
+
+
+	// 定义子类
+	function Student(name, age, sex, grade) {
+		// 使用构造函数式继承
+		People.apply(this, arguments);
+		this.grade = grade;
+	}
+
+	// 继承
+	// 使用类式继承
+	// 可以使用ES5提供 Object.create()
+	// Student.prototype = new People();
+	Student.prototype = Object.create(People.prototype);
+	Student.prototype.constructor = Student;
+
+	// 这种继承方式会丢失constructor属性
+	// 补回
+	// 实例化Student
+	var s = new Student("小明", 12, "男", 6);
+
+
+	// 检测s 是否是Student的实例化对象
+	console.log(s instanceof Student);
+	// 检测s 是否是People的实例化对象
+	console.log(s instanceof People);
+	</script>
+</body>
+</html>

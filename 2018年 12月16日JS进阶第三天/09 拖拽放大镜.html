@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#small {
+			position: absolute;
+			top: 200px;
+			left: 100px;
+			border: 1px solid #ccc;
+			width: 420px;
+			height: 420px;
+		}
+		#glass {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-image: url("./images/aaa.png");
+			width: 220px;
+			height: 220px;
+		}
+		#big {
+			position: absolute;
+			top: 200px;
+			left: 550px;
+			border: 1px solid #ccc;
+			width: 420px;
+			height: 420px;
+			background: url("./images/big.jpg");
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="small">
+		<img src="images/small.jpg" alt="">
+		<div id="glass">
+			
+		</div>
+	</div>
+	<div id="big">
+		
+	</div>
+	<script type="text/javascript">
+		// 获取元素
+		var small = document.getElementById("small");
+		var glass = document.getElementById("glass");
+		var big = document.getElementById("big");
+
+		// 定义比例
+		var rale = 200 / 380;
+
+		// 给glass添加鼠标按下事件
+		glass.onmousedown = function(e) {
+			// 获取鼠标当前的位置
+			var x = e.clientX;
+			var y = e.clientY;
+			// 获取glass当前的位置
+			var left = glass.offsetLeft;
+			var top = glass.offsetTop;
+
+			// 给document添加onmousemove事件
+			document.onmousemove = function(e) {
+				// 获取鼠标移动之后的距离
+				var nowX = e.clientX;
+				var nowY = e.clientY;
+
+				// 计算鼠标移动了多少 该差值就是glass的定位置变化量
+				var resultX = left + nowX - x;
+				var resultY = top + nowY - y;
+				// 边界判定
+				if (resultX < 0) {
+					resultX = 0;
+				} else if (resultX >= small.clientWidth - glass.clientWidth) {
+					resultX = small.clientWidth - glass.clientWidth;
+				}
+				if (resultY < 0) {
+					resultY = 0;
+				} else if (resultY >= small.clientHeight - glass.clientHeight) {
+					resultY = small.clientHeight - glass.clientHeight;
+				}
+				// 设置
+				glass.style.left = resultX + "px";
+				glass.style.top = resultY + "px";
+				// 改变big的背景定位值
+				big.style.backgroundPositionX = -resultX / rale + "px"
+				big.style.backgroundPositionY = -resultY / rale + "px"
+			}
+		}
+
+		// 鼠标抬起的时候 移除document.onmousemove 
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+
+	</script>
+</body>
+</html>

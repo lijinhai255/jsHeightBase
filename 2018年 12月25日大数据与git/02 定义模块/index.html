@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="sea.js"></script>
+	<script type="text/javascript">
+	// 使用use方法引入main.js
+	seajs.use("modules/main", function(main) {
+		console.log("main.js中的内容是:", main);
+	})
+	</script>
+</body>
+</html>

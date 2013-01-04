@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" name="username" id="username">
+	</form>
+	<script type="text/javascript">
+	// 获取元素
+	var inp = document.getElementById("username");
+
+	// 当失去焦点的时候验证内容的合法性
+	inp.onblur = function() {
+		// 获取用户输入的内容
+		var val = this.value;
+		// console.log(val);
+		// 定义正则表达式
+		var reg = /^[a-zA-Z]+/g;
+		// 验证
+		if (reg.test(val)) {
+			console.log("恭喜你, 通过了");
+		} else {
+			console.log("请重新输入");
+		}
+	}
+	</script>
+</body>
+</html>

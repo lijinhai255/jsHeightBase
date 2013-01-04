@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			padding: 30px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">你好， 世界</div>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<!-- <script type="text/javascript" src="js/ickt.js"></script> -->
+	<script type="text/javascript">
+	// 将ickt中的所有功能，改为jquery实现
+	// 这里是自己公司的工具库
+	var ickt = {
+		$: function(id) {
+			return $("#" + id)[0];
+		},
+	
+		html: function(dom, str) {
+			return $(dom).html(str);
+		},
+	
+		css: function(dom, key, value) {
+			$(dom).css(key, value);
+		},
+		// 点击事件
+		click: function(dom, fn) {
+			$(dom).click(fn);
+		}
+	}
+	</script>
+	<script type="text/javascript">
+	// 获取元素
+	var $box = ickt.$("box");
+
+	// 添加点击事件
+	ickt.click($box, function() {
+		// ickt.css(this, "fontSize", "30px");
+		ickt.css(this, {
+			"fontSize": "30px",
+			"backgroundColor": "red"
+		});
+		// 设置内部文本
+		ickt.html(this, "今天天气很晴朗");
+	})
+		
+	</script>
+</body>
+</html>

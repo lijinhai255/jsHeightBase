@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			position: relative;
+			width: 400px;
+			height: 400px;
+			margin: 150px auto;
+			/*景深*/
+			/*perspective: 10000px;*/
+			/*让子元素保留3d效果*/
+			transform-style: preserve-3d;
+			transform: rotateX(45deg) rotateY(45deg);
+			/*调用动画*/
+			animation: zhuan 3s linear 2s infinite;
+		}
+		#box div {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+		}
+		/*定义动画*/
+		@keyframes zhuan {
+			form {
+				transform: rotateX(45deg) rotateY(45deg);
+			}
+			to {
+				transform: rotateX(405deg) rotateY(405deg);
+			}
+		}
+		/*顶面*/
+		.one {
+			background-color: rgba(255, 0, 0, .5);
+			transform: translateZ(200px);
+		}
+		/*底面*/
+		.two {
+			background-color: rgba(0, 255, 0, .5);
+			transform: translateZ(-200px);
+		}
+		.three {
+			background-color: rgba(0, 0, 255, .5);
+			transform: rotateX(90deg) translateZ(200px);
+		}
+		.four {
+			background-color: rgba(255, 255, 0, .5);
+			transform: rotateX(90deg) translateZ(-200px);
+		}
+		.five {
+			background-color: rgba(0, 255, 255, .5);
+			transform: rotateY(90deg) translateZ(200px);
+		}
+		.six {
+			background-color: rgba(255, 0, 255, .5);
+			transform: rotateY(90deg) translateZ(-200px);
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="one"></div>
+		<div class="two"></div>
+		<div class="three"></div>
+		<div class="four"></div>
+		<div class="five"></div>
+		<div class="six"></div>
+	</div>
+</body>
+</html>

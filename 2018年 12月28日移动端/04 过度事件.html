@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			left: 0;
+			top: 0;
+			transition: all 1s;
+		}
+		#box.cur {
+			left: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// 2s之后添加类名
+	setTimeout(function() {
+		// box.className = "cur";
+		box.setAttribute("class", "cur");
+	}, 2000)
+
+
+	// 过度完成事件
+	box.addEventListener("transitionend", function() {
+		console.log("过度完成");
+	})
+
+
+
+	// 尝试添加transitionstart事件
+	// box.addEventListener("transtionstart", function() {
+	// 	console.log("过度开始");
+	// })
+
+
+	// 过度完成事件只有，transtionend事件，没有transitionstart事件
+	</script>
+</body>
+</html>

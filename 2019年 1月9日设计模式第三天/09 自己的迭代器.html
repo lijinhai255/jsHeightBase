@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 定义数组
+	var arr = ["诺基亚", "苹果", "三星", "华为"];
+
+	// 定义一个对象
+	var obj = {
+		a: "苹果",
+		b: "香蕉",
+		c: "西瓜",
+		d: "橘子"
+	}
+
+
+	// console.log(obj instanceof Object);
+	// console.log(arr instanceof Object);
+	// 定义一个函数， 通过该函数可以实现对数组和对象的遍历
+	/**
+	 * each 可以实现对数组以及对对象的遍历
+	 * @target 要遍历的目标
+	 * @fn 要执行的函数
+	 **/
+	function each(target, fn) {
+		// 判断target传递的是数组， 还是对象
+		if (target instanceof Array) {
+			// 说明是传递的数组
+			for (var i = 0; i < target.length; i++) {
+				// 执行函数并传递三个参数
+				// 成员值: target[i], 索引值： i, 原数组： target
+				// fn(target[i], i, target);
+				fn.call(target[i], target[i], i, target);
+			}
+		} else if (Object.prototype.toString.call(target) === "[object Object]")  {
+			// 请问有几种方式可以确定一个对象？
+			// 1 instanceof Object  这种方式虽然可行， 但是不保险
+			// 2 constructor Object 
+			// 3 Object.protoytpe.toString.call(obj) === "[object Object]"
+			// 说明传递的是对象
+			for (var i in target) {
+				// fn执行并且传递两个参数
+				// 属性名: i,  属性值： target[i]
+				// fn(i, target[i]);
+				fn.call(target[i], i, target[i]);
+			}
+		}
+	}
+
+
+	// console.log(arr.toString());
+	// console.log(obj.toString());
+	// 由于数组对toString进行重载，我们不能使用数组中的toString方法， 而是要使用Object中原型上的toString方法来判断对象的类型
+
+
+
+	// 测试
+	// 遍历数组
+	// each(arr, function() {
+	// 	console.log(this, arguments);
+	// })
+
+	// 遍历对象
+	each(obj, function() {
+		console.log(this, arguments);
+	})
+	</script>
+</body>
+</html>

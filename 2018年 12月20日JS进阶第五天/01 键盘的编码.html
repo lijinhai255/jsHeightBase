@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" tabIndex=3 id="inp">
+	<input type="text" tabIndex=2 id="inp1">
+	<input type="text" tabIndex=1 id="inp2">
+	<script type="text/javascript">
+		var inp = document.getElementById("inp");
+		inp.onkeydown = function(e) {
+			console.log(e.keyCode)
+		}
+	</script>
+</body>
+</html>

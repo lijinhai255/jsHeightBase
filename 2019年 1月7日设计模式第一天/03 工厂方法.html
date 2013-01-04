@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 工厂方法： 定义一个工厂， 在该工厂内部可以管理多个实例化对象
+
+
+	// 定义构造函数
+	function Dog() {
+		this.type = "dog";
+	}
+
+
+	// 定义构造函数
+	function Cat() {
+		this.type = "cat";
+	}
+
+
+	// 定义构造函数
+	function Pig() {
+		this.type = "pig";
+	}
+
+	// 定义新的工厂
+	function FactoryMethod(type) {
+		if (type === "dog") {
+			return new Dog();
+		} else if (type === "cat") {
+			return new Cat();
+		} else if (type === "pig") {
+			return new Pig();
+		}
+	}
+
+
+	// 调用
+	var dog = FactoryMethod("dog");
+	var cat = FactoryMethod("cat");
+	var pig = FactoryMethod("pig");
+	</script>
+</body>
+</html>

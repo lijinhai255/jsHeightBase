@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		你好
+		<div class="one"></div><!-- 我是一个注释 --></div>
+	<script type="text/javascript">
+		// 获取元素
+		var box = document.getElementById("box");
+		console.log(box.nodeType); // 这里输出的是1  是元素类型
+
+		// 获取box元素的所有子节点
+		var box_children = box.childNodes;
+		console.log(box_children);
+		for(var i = 0; i < box_children.length; i++) {
+			console.log(box_children[i], box_children[i].nodeType);
+		}
+		
+		// 输出document的节点类型
+		console.log(document, document.nodeType);
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#ad {
+			position: absolute;
+			top: 100px;
+			left: 100px;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			line-height: 100px;
+			background-color: red;
+		}
+		body {
+			height: 10000px;
+		}
+	</style>
+</head>
+<body>
+	<div id="ad">
+		这是广告
+	</div>
+	<script type="text/javascript" src="js/animate.js"></script>
+	<script type="text/javascript">
+		// 获取元素
+		var ad = document.getElementById("ad");
+		// 希望#ad在页面滚动的时候 跟随到视口内
+		document.body.onscroll = function() {
+			// 获取页面卷动值
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			// 让#ad动画到该位置 具体的值就是scrollTop + 100;
+			animate(ad, {
+				top: scrollTop + 100
+			}, 1000, function() {
+				console.log("动画结束")
+			})
+		}
+		// 经过我们的操作，发现，onscroll事件是一个高频率事件，在事件函数内的代码，会触发多次。可是有些代码，执行一次的效果与执行多次的效果是一致的。所以，就没有必要去执行那么多次，就需要节流。
+		// 我们尝试加锁，可是，加锁针对的是第一次的动作。而我们现在的操作针对的是最后一次的操作。
+		// 加锁节流失败。
+	</script>
+</body>
+</html>

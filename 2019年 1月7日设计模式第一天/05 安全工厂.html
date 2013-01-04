@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 安全工厂也成为安全类
+
+	// 构造函数与普通函数定义方式没有区别， 只不过定义构造函数的时候首字母要大写（此要求非语法要求）
+	// 构造函数可以当做普通函数来调用， 普通函数也可以当做构造函数来使用
+	// 但是构造函数的目的是为了创建对象，如果把构造函数当做普通函数来使用的时候，里面的this指向window， 所有的属性都给window添加上了
+	
+	// 当创建对象或者是数组的时候，如果使用方式是通过构造函数，其实可以new也可以不new
+
+	// 创建对象
+	// var obj = Object(); // 按照常理当不使用new ，应该得不到一个对象
+	// console.log(obj); // 这里得到的确实是一个对象， 此时我们称Object是一个安全类
+
+	// 创建数组
+	// var arr = Array(); // 同理Array也是一个安全类 
+	// console.log(arr); 
+
+	// 定义构造函数
+	// function People(name, age, sex) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// 	this.sex = sex;
+	// }
+
+	// 使用new来调用
+	// var p = new People("小明", 12, "男");
+	// console.log(p);
+
+	// 不使用new调用
+	// var p1 = People("小红", 11, "女");
+	// console.log(p1);
+
+
+	// 于是， 我们将People改造成为安全类
+	// 分析： 当new 的时候 函数中的this指向实例化对象， 如果不使用new的时候，函数中的this指向window，
+	// 我们可以利用这个特点，对其改造
+
+	// 改造：
+	function People(name, age, sex) {
+		// 通过判断this指向， 从而决定代码该如何执行
+		if (this instanceof People) {
+			// 说明是使用new 来调用
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		} else {
+			// 说明没有使用new 来调用
+			return new People(name, age, sex);
+		}
+	}
+
+	// 测试
+	var p = new People("小明", 12, "男");
+	console.log(p);
+
+	var p1 = People("小红", 11, "女");
+	console.log(p1);
+
+
+	// 现在People被改造为安全类， 无论外部如何调用都会返回类的实例化对象
+
+
+	</script> 
+</body>
+</html>

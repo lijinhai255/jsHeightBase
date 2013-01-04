@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 1120px;
+			margin: 0 auto;
+		}
+		ul {
+			list-style: none;
+		}
+		ul li {
+			line-height: 20px;
+			padding: 3px;
+			margin-bottom: 10px;
+			background-color: orange;
+			overflow: hidden;
+		}
+		span {
+			float: right;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul id="list">
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+			<li><span>&times;</span></li>
+		</ul>
+		<div class="btns">
+			<button id="btn">点我添加li</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// 要求: 
+	// 现在我们要做三件事件
+	// 1 点击btn添加Li元素
+	// 2 点击哪个li就让哪个li元素改变背景色
+	// 3 点击哪个span就让对应span的li元素消失
+
+	// 获取元素
+	var btn = document.getElementById("btn");
+	var ul = document.getElementById("list");
+	var lis = document.getElementsByTagName("li");
+	var spans = document.getElementsByTagName("span");
+
+	// 实现1
+	// 给btn添加点击事件
+	btn.onclick = function() {
+		// 创建li元素
+		var li = document.createElement("li");
+		li.onclick = li_click;
+		// 创建span元素
+		var span = document.createElement("span");
+		span.onclick = span_click;
+		// 设置内部文本
+		span.innerHTML = "&times;";
+
+		// 追加子元素
+		li.appendChild(span);
+		ul.appendChild(li);
+	}
+
+	function li_click() {
+		this.style.backgroundColor = "red";
+	}
+
+	// 实现2
+	for (var i = 0; i < lis.length; i++) {
+		// 循环添加点击事件
+		lis[i].onclick = li_click;
+	}
+
+	function span_click() {
+		ul.removeChild(this.parentNode);
+	}
+
+	// 实现3
+	for (var i = 0; i < spans.length; i++) {
+		spans[i].onclick = span_click;
+	}
+
+
+	// 查看当前页面中的代码有没有存在问题呢？
+	
+	// 查看每个li与每个li之间的事件是同一个吗？ 还要查看每个span与每个span元素身上的事件是同一个吗？
+
+	// 当我们点击span元素的时候其实删除的有四样东西: 1 span元素 2 span元素身上的事件 3 li元素 4 li元素身上的事件
+
+	// 然后， 我们需要考虑一个问题， 会不会造成内存泄漏
+
+	// 内存泄漏: 不能重复利用的内存
+	</script>
+</body>
+</html>

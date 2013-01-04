@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 500px;
+			height: 500px;
+			margin: 0 auto;
+			background-color: red;
+		}
+		#box1 {
+			width: 250px;
+			height: 250px;
+			margin: 0 auto;
+			background-color: blue;
+		}
+		#box2 {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<div id="box2"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+	var box1 = document.getElementById("box1");
+	var box2 = document.getElementById("box2");
+
+	// 分别给三个元素添加点击事件
+	box.onclick = function() {
+		console.log("box");
+	}
+
+	box1.onclick = function(e) {
+		console.log("box1");
+		// e.stopPropagation();
+	}
+
+	// 现在我们希望当点击box2的时候， 不要在往上执行了
+	box2.onclick = function(e) {
+		// 兼容IE
+		var e = e || window.event;
+		console.log("box2");
+
+		// 在高级浏览器中阻止冒泡的方式
+		e.stopPropagation();
+
+		// 在IE中阻止冒泡的方式
+		e.cancelBubble = true;
+	}
+	</script>
+</body>
+</html>

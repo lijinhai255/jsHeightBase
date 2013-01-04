@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" name="username" id="username">
+	</form>
+	<script type="text/javascript">
+	// 获取元素
+	var inp = document.getElementById("username");
+
+	// 当失去焦点的时候验证内容的合法性
+	inp.onblur = function() {
+		var result = Strategy.use("chunshuzi", this.value);
+		console.log(result);
+	}
+
+
+	var Strategy = (function() {
+		// 定义对象
+		var s = {
+			"chunyingwen": function(str) {
+				// 定义正则表达式
+				var reg = /^[a-zA-Z]+$/g;
+				// 验证
+				if (reg.test(str)) {
+					return "恭喜你， 通过了";
+				} else {
+					// 说明输入的不合法
+					return "请重新输入";
+				}
+			},
+			"chunshuzi": function(str) {
+				// 定义正则表达式
+				var reg = /^\d+$/g;
+				// 验证
+				if (reg.test(str)) {
+					return "恭喜你, 通过了";
+				} else {
+					// 说明输入的不合法
+					return "请重新输入";
+				}
+			}
+		};
+
+		// 定义接口对象
+
+		return {
+			use: function(type, str) {
+				return s[type](str);
+			}
+		}
+	})();
+
+	// console.log(Strategy);
+	// Strategy.use("chunyingwen", "asdasdasda");
+	</script>
+</body>
+</html>

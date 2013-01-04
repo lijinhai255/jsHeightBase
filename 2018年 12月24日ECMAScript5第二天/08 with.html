@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 开启严格模式
+	"use strict"
+	// 定义对象
+	var obj = {
+		a: 1,
+		b: 2
+	}
+
+
+	var a = 10;
+	var b = 20;
+	
+
+	with (obj) {
+		// 因为obj中存在a和b， 所以会优先输出obj中的a和b
+		console.log(a);
+		console.log(b);
+
+		// 因为Obj中存在a属性， 所以优先修改的是obj中a
+		a = 11;
+
+		// 因为Obj中没有c， 所以就定义在全局中
+		c = 123;
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 普通单例: 在定义的时候就执行的单例
+
+	var single = (function() {
+		function People(name, age, sex) {
+			console.log("普通单例");
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+
+		// 定义变量用于保存单例
+		var instance = new People("小明", 12, "男");
+		
+		// 定义接口函数 
+		return function() {
+			// 由于已经实例化过了， 所以就不需要再次判断
+			return instance;
+		}
+	})();
+
+	// var p = single();
+	// var p1 = single();
+
+
+	// 这个叫做普通单例， 执行单例的时机是在定义的时候
+	// 本来页面中需要加载的内容就很多，如果单例中也有很多内容，那么需要加载的内容就更多， 使用户看到页面的时间将会被延长，影响了用户体验
+	</script>
+</body>
+</html>

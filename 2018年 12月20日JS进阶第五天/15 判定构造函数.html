@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function People() {
+
+		}
+		People.prototype.constructor = null;
+		var p1 = new People();
+		// console.log(p1.constructor === People);
+		// instanceof 是一个关键字 用于判定一个对象是否是另一个构造函数的实例。
+		console.log(p1 instanceof People, 11111)
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 开启延时器
+	setTimeout(function() {
+		alert(123);
+	}, 3000)
+
+
+	// 初始情况下，我们将计算的代码放在这里， 3s之后延时器中的代码执行， 出现弹出框， 当前页面中的输出语句被阻塞， 但是当点击调弹出框之后， 接着上一次的输出语句继续输出， 说明alert阻塞了当前线程
+
+	// var i = 0;
+	// // 开启定时器
+	// setInterval(function() {
+	// 	i++;
+	// 	console.log(i);
+	// }, 1000)
+
+
+
+
+	// 后来， 我们将要计算的代码提取到另外一个js文件中，并初始化Worker函数， 当3s之后，页面中出现弹出框，输出语句也不再执行，但是当点击掉弹出框之后，页面中会出现很多输出语句，这说明了虽然主线程被阻塞了， 但是有另外的一个线程在不断的输出
+
+	// 初始化Worker函数
+	var worker = new Worker("out.js");
+	</script>
+</body>
+</html>

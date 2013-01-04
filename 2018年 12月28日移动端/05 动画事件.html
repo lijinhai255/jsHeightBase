@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			left: 0;
+			top: 0;
+			animation: donghua 1s linear 0s 3 alternate;
+		}
+
+		/*定义动画*/
+		@keyframes donghua {
+			from {
+				left: 0;
+			}
+			to {
+				left: 100px;
+			}
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+	// 获取元素
+	var box = document.getElementById("box");
+
+	// 动画开始事件
+	box.addEventListener("animationstart", function() {
+		// console.log("动画开始");
+	})
+
+
+	// 动画结束事件
+	box.addEventListener("animationend", function() {
+		console.log("动画结束");
+	})
+
+
+
+	</script>
+</body>
+</html>
